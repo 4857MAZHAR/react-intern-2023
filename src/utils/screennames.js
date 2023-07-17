@@ -4,4 +4,5 @@ export const screennames = {
   home: 'HomeScreen',
   setting: 'SettingScreen',
   productdetail: 'productdetail',
+  drawerhome: 'drawerhome',
 };

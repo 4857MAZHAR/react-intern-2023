@@ -1,13 +1,27 @@
-import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
+import {View, StyleSheet, FlatList} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+
+import ProductCard from '../components/ProductCard';
+import {fetchProducts} from '../store/productslice';
+import Loading from '../components/Loading';
 
 export default function HomeScreen({navigation, route}) {
-  React.useEffect(() => {
-    alert(`Welcome Back ${route.params.name}`);
+  const dispatch = useDispatch();
+  const products = useSelector(state => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
   }, []);
+
   return (
     <View style={styles.mncontainer}>
-      <Text>Home</Text>
+      <Loading show={products?.isloading} />
+      <FlatList
+        numColumns={3}
+        data={products?.products}
+        renderItem={({item}) => <ProductCard key={item?.id} data={item} />}
+      />
     </View>
   );
 }
@@ -15,7 +29,5 @@ export default function HomeScreen({navigation, route}) {
 const styles = StyleSheet.create({
   mncontainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });

@@ -4,6 +4,7 @@ const Stack = createNativeStackNavigator();
 
 import BoardingScreen from '../screens/BoardingScreen';
 import BottomTab from './BottomTab';
+import DrawerNavigation from './DrawerNavigation';
 import {screennames} from '../utils/screennames';
 
 export default function RouteNavigation() {
@@ -18,7 +19,7 @@ export default function RouteNavigation() {
         />
         <Stack.Screen
           name={screennames.authenticatedsucess}
-          component={BottomTab}
+          component={DrawerNavigation}
         />
       </Stack.Navigator>
     </NavigationContainer>
