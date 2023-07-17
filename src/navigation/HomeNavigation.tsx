@@ -6,7 +6,7 @@ import Details from '../screens/Details';
 
 
 
-const HomeStackNavigator = () => {
+const HomeNavigator = () => {
   const Stack = createNativeStackNavigator(); 
   return (
     <Stack.Navigator>
@@ -16,4 +16,4 @@ const HomeStackNavigator = () => {
   );
 };
 
-export default HomeStackNavigator;
+export default HomeNavigator;

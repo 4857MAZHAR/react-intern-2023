@@ -4,13 +4,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/screens/Home';
 import Details from './src/screens/Details';
-import HomeStackNavigation from './src/navigation/HomeStackNavigation';
+import HomeNavigation from './src/navigation/HomeNavigation';
 
 function App() {
 const Stack = createNativeStackNavigator();
   return (
   <NavigationContainer>
-     <HomeStackNavigation />
+     <HomeNavigation />
   </NavigationContainer>
   )
 }
