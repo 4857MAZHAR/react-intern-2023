@@ -8,14 +8,21 @@ import * as Yup from "yup";
 import { useFormikContext } from "formik";
 import Error from '../components/Error'
 import ActionText from '../components/ActionText'
+import CustomIconButton from '../components/CustomIconButton'
 
 
 // Get the screen width using Dimensions
 const screenWidth = Dimensions.get('window').width;
 
-const SignupForm = () => {
 
-  const validateEmail = (email:any) => {
+
+const SignupForm = () => {
+  const SignInWithGoogle = () => {
+    console.log("Custom Button Pressed!");
+  };
+  
+
+  const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -60,9 +67,9 @@ const SignupForm = () => {
   return (
     <View style={styles.container}>
         <View style={styles.text}>
-        <CenteredText text="Try BOXD for free for 2 weeks" />
-        <CenteredText text="Quick and simple signup" />
-        <CenteredText text="No card required" />
+          <CenteredText text="Try BOXD for free for 2 weeks" />
+          <CenteredText text="Quick and simple signup" />
+          <CenteredText text="No card required" />
         
         </View> 
         <View style={styles.form}>
@@ -89,12 +96,21 @@ const SignupForm = () => {
             secureTextEntry={true}
         />
          {confirmPasswordError ? <Error error={confirmPasswordError}></Error> : null}
-        <CustomButton title='Create my free account >' onPress={handleSignUp}/>
-        <ActionText text="Already with BOXD? Log in here" onPress={moveToLogin} />
 
+        <View style={styles.signInBtn}> 
+        <CustomButton title='Create my free account >' onPress={handleSignUp}/>
+        </View>
+       
+    <View style={styles.iconbtn}>
+    <CustomIconButton title="Sign in with Google" iconSource={require("../assets/icons/googleIcon.png")} onPress={SignInWithGoogle} />
+    </View>
+      
+      <ActionText text="Already with BOXD? Log in here" onPress={moveToLogin} />
+      
         
         
         </View>
+       
     </View>
 
   )
@@ -103,14 +119,12 @@ const SignupForm = () => {
 const styles = StyleSheet.create({
     container: {
      backgroundColor:colors.primary,
-     
-
     padding:screenWidth*0.08,
       
       flex:1,
     },
     text:{
-       // backgroundColor:'red',
+     
      alignItems:'center',
      justifyContent:'center',
     
@@ -118,11 +132,20 @@ const styles = StyleSheet.create({
     },
     form:{ 
         flex:5,
-       // backgroundColor:colors.light,
+       
     },error: {
       color: "red",
       marginBottom: 5,
     },
+    signInBtn:{
+      flex:2,
+      alignItems:'center',
+      justifyContent:'center'
+    },
+    
+    iconbtn:{
+      flex:1,
+    }
   
     
   });

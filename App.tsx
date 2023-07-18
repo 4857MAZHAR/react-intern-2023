@@ -17,8 +17,8 @@ const Stack = createNativeStackNavigator();
   //    <AppNavigator />
   // </NavigationContainer>
 
-   //<SignupForm />
-   <Login />
+   <SignupForm />
+  //  <Login />
   
   )
 }
