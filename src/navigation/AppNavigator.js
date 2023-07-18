@@ -9,8 +9,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomeScreen from '../screens/HomeScreen';
-import SecondScreen from "../screens/SecondScreen";
+import SignUp from '../screens/Authentication/SignUp';
+import Login from "../screens/Authentication/Login";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,8 +18,8 @@ function App() {
  return (
   <NavigationContainer>
    <Stack.Navigator>
-    <Stack.Screen name="Home Screen" component={HomeScreen} />
-    <Stack.Screen name="SecondScreen" component={SecondScreen} />
+    <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
+    <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
    </Stack.Navigator>
   </NavigationContainer>
  );
