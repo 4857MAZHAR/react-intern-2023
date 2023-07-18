@@ -28,9 +28,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.darkGreen, // Customize button text color as needed
-   // fontSize: 20,
-    //fontWeight: 'bold',
-    //paddingHorizontal:60,
   },
 });
 
