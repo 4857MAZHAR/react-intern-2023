@@ -5,13 +5,21 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/screens/Home';
 import Details from './src/screens/Details';
 import HomeNavigation from './src/navigation/HomeNavigation';
+import AppNavigator from './src/navigation/AppNavigator';
+import SignupForm from './src/screens/SignupForm';
+import Login from './src/screens/Login';
+
 
 function App() {
 const Stack = createNativeStackNavigator();
   return (
-  <NavigationContainer>
-     <HomeNavigation />
-  </NavigationContainer>
+  // <NavigationContainer>
+  //    <AppNavigator />
+  // </NavigationContainer>
+
+   //<SignupForm />
+   <Login />
+  
   )
 }
 

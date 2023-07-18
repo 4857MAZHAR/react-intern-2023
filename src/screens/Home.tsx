@@ -6,7 +6,7 @@ const Home = (props:any) => {
   const navigation=useNavigation();
   return (
     <View style={styles.container}>
-        <Text>Home Screen</Text>
+        <Text>Home Screens</Text>
         <Button title='Go To Details' onPress={()=>props.navigation.navigate("Details")}></Button>
     </View>
   )
