@@ -1,17 +1,19 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
-import CustomTextButton from '../components/CustomTextButton';
+
 import {colors} from '../utils/colors';
+import {screennames} from '../utils/screennames';
+import DynamicButton from '../components/DynamicButton';
 
 export default function SettingScreen({navigation, route}) {
   return (
     <View style={styles.mncontainer}>
       <Text>SettingsScreen</Text>
-      <CustomTextButton
-        buttonfunction={() => navigation.navigate('onBoardScreen')}
+      <DynamicButton
+        btnfunction={() => navigation.navigate(screennames.signup)}
         text={'LogOut'}
-        buttonstyle={styles.btnstyle}
-        btntextstyle={styles.tetxtstyle}
+        btnstyle={styles.btnstyle}
+        textstyle={styles.tetxtstyle}
       />
     </View>
   );
@@ -29,6 +31,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 5,
+    width: '20%',
   },
   tetxtstyle: {
     color: colors.white,

@@ -3,6 +3,8 @@ export const screennames = {
   authenticatedsucess: 'home',
   home: 'HomeScreen',
   setting: 'SettingScreen',
-  productdetail: 'productdetail',
   drawerhome: 'drawerhome',
+  login: 'loginscreen',
+  signup: 'signupscreen',
+  forgotpass: 'forgotpass',
 };
