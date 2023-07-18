@@ -2,18 +2,15 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet,Dimensions } from 'react-native';
 import colors from '../utils/colors';
 
-interface CustomButtonProps {
-  title: string;
-  onPress: () => void;
-}
+
 
 // Get the screen width using Dimensions
 const screenWidth = Dimensions.get('window').width;
 
-const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress }) => {
+const CustomButton = ({ title, onPress, style,textStyle }) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.buttonText}>{title}</Text>
+    <TouchableOpacity style={[styles.button,style]} onPress={onPress}>
+      <Text style={[styles.buttonText,textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -21,7 +18,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress }) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.secondary, // Customize button background color as needed
-    padding: screenWidth*0.05,
+    padding: screenWidth*0.02,
     borderRadius: screenWidth*0.10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -30,9 +27,10 @@ const styles = StyleSheet.create({
     borderColor:colors.orange,
   },
   buttonText: {
-    color: colors.black, // Customize button text color as needed
-    fontSize: 16,
-    fontWeight: 'bold',
+    color: colors.darkGreen, // Customize button text color as needed
+   // fontSize: 20,
+    //fontWeight: 'bold',
+    //paddingHorizontal:60,
   },
 });
 

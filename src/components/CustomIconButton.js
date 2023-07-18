@@ -2,10 +2,10 @@ import React from "react";
 import { TouchableOpacity, Text, StyleSheet, Image,View } from "react-native";
 import colors from "../utils/colors";
 
-const CustomButton = ({ title, iconSource, onPress, iconSize = 20, buttonStyle = {} }) => {
+const CustomButton = ({ title, iconSource, onPress, iconSize = 20, style }) => {
   return (
 
-    <View style={styles.container}>
+    <View style={[styles.container,style]}>
       <TouchableOpacity style={[styles.button]}  onPress={onPress}>
       <Image source={iconSource} style={[{ width: iconSize, height: iconSize }]} />
       <Text style={styles.buttonText}>{title}</Text>
@@ -46,9 +46,11 @@ const styles = StyleSheet.create({
     elevation: 5,
       },
       buttonText: {
-        color: colors.black,
-        fontSize: 16,
+        color: colors.dark,
+        fontSize: 15,
         marginLeft:20,
+        fontWeight:'bold',
+
       },
 });
 

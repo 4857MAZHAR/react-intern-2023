@@ -1,13 +1,9 @@
 import React from 'react'
 import { Text,View,StyleSheet } from 'react-native'
 
-interface ErrorProps {
-    error: string;
-   
-    
-  }
 
-const Error: React.FC<ErrorProps> = ({error}) => {
+
+const Error = ({error}) => {
   return (
    <View >
     <Text style={styles.error}>{error}</Text>

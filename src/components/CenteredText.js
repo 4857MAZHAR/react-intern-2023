@@ -2,14 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import colors from '../utils/colors';
 
-interface CenteredTextProps {
-  text: string;
-}
 
-const CenteredText: React.FC<CenteredTextProps> = ({ text }) => {
+const CenteredText = ({ text, style }) => {
   return (
     <View style={styles.container} >
-      <Text style={styles.text}>{text}</Text>
+      <Text style={[styles.text,style]}>{text}</Text>
     </View>
   );
 };
@@ -21,9 +18,9 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontSize: 23,
+   // fontSize: 23,
     fontWeight: 'bold',
-    color: colors.black,
+    color: colors.darkGreen,
     
    
    

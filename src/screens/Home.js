@@ -2,8 +2,8 @@ import React from 'react'
 import { View ,Text,StyleSheet,Button} from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-const Home = (props:any) => {
-  const navigation=useNavigation();
+const Home = (props) => {
+ 
   return (
     <View style={styles.container}>
         <Text>Home Screens</Text>

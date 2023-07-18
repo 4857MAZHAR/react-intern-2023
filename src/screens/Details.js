@@ -3,6 +3,7 @@ import { Text,View,StyleSheet } from 'react-native'
 
 const Details = () => {
   return (
+    
     <View style={styles.container}>
     <Text>Details Screen</Text>
     

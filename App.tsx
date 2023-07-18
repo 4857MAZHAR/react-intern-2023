@@ -13,12 +13,12 @@ import Login from './src/screens/Login';
 function App() {
 const Stack = createNativeStackNavigator();
   return (
-  // <NavigationContainer>
-  //    <AppNavigator />
-  // </NavigationContainer>
+  <NavigationContainer>
+     <AppNavigator />
+  </NavigationContainer>
 
-   <SignupForm />
-  //  <Login />
+   //<SignupForm />
+    //<Login />
   
   )
 }
