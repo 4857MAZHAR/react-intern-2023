@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
 import {
   View,
   TextInput,
   Dimensions,
   StyleSheet,
   TouchableOpacity,
-} from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const { width, height } = Dimensions.get("window");
+const {width, height} = Dimensions.get('window');
 
 const CustomInput = ({
   placeholder,
@@ -18,19 +18,19 @@ const CustomInput = ({
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(
-    initialSecureTextEntry
+    initialSecureTextEntry,
   );
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
-  const toggleSecureTextEntry = () => setSecureTextEntry((prev) => !prev);
+  const toggleSecureTextEntry = () => setSecureTextEntry(prev => !prev);
 
   return (
     <View style={styles.inputContainer}>
       <TextInput
         style={[
           styles.textinput,
-          { borderColor: isFocused ? "black" : "lightgrey" },
+          {borderColor: isFocused ? 'black' : 'lightgrey'},
         ]}
         placeholder={placeholder}
         keyboardType={keyboardType}
@@ -42,9 +42,9 @@ const CustomInput = ({
       {initialSecureTextEntry && (
         <TouchableOpacity style={styles.icon} onPress={toggleSecureTextEntry}>
           <Icon
-            name={secureTextEntry ? "eye-off-outline" : "eye-outline"}
+            name={secureTextEntry ? 'eye-off-outline' : 'eye-outline'}
             size={24}
-            color={"grey"}
+            color={'grey'}
           />
         </TouchableOpacity>
       )}
@@ -54,14 +54,14 @@ const CustomInput = ({
 
 const styles = StyleSheet.create({
   inputContainer: {
-    height: height * 0.1, // 10% of total height
-    justifyContent: "flex-start", // To place the TextInput at the top of the Input Container
-    alignItems: "center", // To center the TextInput horizontally within the Input Container
-    flexDirection: "row", // Use row direction for the TextInput and the icon.
+    height: height * 0.1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   textinput: {
     width: width * 0.8,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 5,
     borderWidth: 1,
     height: height * 0.06,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   icon: {
-    position: "absolute",
+    position: 'absolute',
     right: 15,
   },
 });
