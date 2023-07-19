@@ -3,6 +3,8 @@ import React from 'react';
 
 import Ionicicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
 
 import {colors} from '../utils/colors';
 import Heading from '../components/Typography/Heading';
@@ -11,16 +13,18 @@ import DynamicInput from '../components/DynamicInput';
 import DynamicButton from '../components/DynamicButton';
 import {screennames} from '../utils/screennames';
 
-export default function LoginScreen({navigation, route}) {
-  const [email, setemail] = React.useState('');
-  const [pass, setpass] = React.useState('');
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  pass: Yup.string().required('Password is required'),
+});
 
-  const onSubmitFunction = async () => {
+export default function LoginScreen({navigation, route}) {
+  const onSubmitFunction = async values => {
     try {
-      if (email === '' || pass === '') {
-        alert('Fill All Feilds');
+      if (values.email === '' || values.pass === '') {
+        alert('Fill All Fields');
       } else {
-        alert(email, pass);
+        alert(JSON.stringify(values));
       }
     } catch {}
   };
@@ -32,55 +36,69 @@ export default function LoginScreen({navigation, route}) {
   };
 
   return (
-    <View style={styles.mncontainer}>
-      <View style={styles.backheader}>
-        <TouchableOpacity onPress={() => navigation.pop()}>
-          <Ionicicons name="arrow-back-sharp" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
-      <Heading type="h2" textstyle={styles.mntext} text={`Sign in to BOXD`} />
-      <DynamicInput
-        placeholder="Email"
-        secureEntry={false}
-        val={email}
-        onchange={e => setemail(e)}
-      />
-      <DynamicInput
-        placeholder="Password"
-        secureEntry={true}
-        val={pass}
-        onchange={e => setpass(e)}
-      />
-      <View style={styles.center}>
-        <DynamicButton
-          btnfunction={onSubmitFunction}
-          textstyle={styles.btntext1}
-          btnstyle={{...styles.btnstyle1, ...styles.center}}
-          text={'Sign in'}></DynamicButton>
-        <DynamicButton
-          btnfunction={googleFunction}
-          textstyle={styles.btntext2}
-          btnstyle={styles.btnstyle2}
-          text={'Sign in with Google'}
-          icondirection="left">
-          <Image
-            source={require('../assets/google_icon.png')}
-            style={styles.gimage}
+    <Formik
+      initialValues={{email: '', pass: ''}}
+      validationSchema={validationSchema}
+      onSubmit={values => onSubmitFunction(values)}>
+      {({handleChange, handleSubmit, values, errors, touched}) => (
+        <View style={styles.mncontainer}>
+          <View style={styles.backheader}>
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <Ionicicons name="arrow-back-sharp" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+          <Heading
+            type="h2"
+            textstyle={styles.mntext}
+            text={`Sign in to BOXD`}
           />
-        </DynamicButton>
-        <View style={styles.center}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate(screennames.forgotpass)}
-            style={[styles.center]}>
-            <BodyText
-              textstyle={styles.reditext}
-              type="lg"
-              text="Forgotten your password?"
-            />
-          </TouchableOpacity>
+          <DynamicInput
+            placeholder="Email"
+            secureEntry={false}
+            val={values.email}
+            onchange={handleChange('email')}
+          />
+          {errors.email && touched.email && <Text>{errors.email}</Text>}
+
+          <DynamicInput
+            placeholder="Password"
+            secureEntry={true}
+            val={values.pass}
+            onchange={handleChange('pass')}
+          />
+          {errors.pass && touched.pass && <Text>{errors.pass}</Text>}
+          <View style={styles.center}>
+            <DynamicButton
+              btnfunction={handleSubmit}
+              textstyle={styles.btntext1}
+              btnstyle={{...styles.btnstyle1, ...styles.center}}
+              text={'Sign in'}></DynamicButton>
+            <DynamicButton
+              btnfunction={googleFunction}
+              textstyle={styles.btntext2}
+              btnstyle={styles.btnstyle2}
+              text={'Sign in with Google'}
+              icondirection="left">
+              <Image
+                source={require('../assets/google_icon.png')}
+                style={styles.gimage}
+              />
+            </DynamicButton>
+            <View style={styles.center}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(screennames.forgotpass)}
+                style={[styles.center]}>
+                <BodyText
+                  textstyle={styles.reditext}
+                  type="lg"
+                  text="Forgotten your password?"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
+      )}
+    </Formik>
   );
 }
 

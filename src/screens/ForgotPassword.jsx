@@ -3,6 +3,8 @@ import React from 'react';
 
 import Ionicicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
 
 import {colors} from '../utils/colors';
 import Heading from '../components/Typography/Heading';
@@ -11,47 +13,61 @@ import DynamicInput from '../components/DynamicInput';
 import DynamicButton from '../components/DynamicButton';
 import {screennames} from '../utils/screennames';
 
-export default function ForgotPassword({navigation, route}) {
-  const [email, setemail] = React.useState('');
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+});
 
-  const onSubmitFunction = async () => {
+export default function ForgotPassword({navigation, route}) {
+  const onSubmitFunction = async values => {
     try {
-      if (email === '') {
-        alert('Fill All Feilds');
+      if (values.email === '') {
+        alert('Provide Email Address');
       } else {
-        alert(email);
+        alert(JSON.stringify(values));
       }
     } catch {}
   };
 
   return (
-    <View style={styles.mncontainer}>
-      <View style={styles.backheader}>
-        <TouchableOpacity onPress={() => navigation.pop()}>
-          <Ionicicons name="arrow-back-sharp" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
-      <Heading type="h2" textstyle={styles.mntext} text={`Forgot Password`} />
-      <BodyText
-        type="md"
-        textstyle={styles.bodytext}
-        text={`Please enter your email address \n below and we will send you a link to\n reset password`}
-      />
-      <DynamicInput
-        placeholder="Email address"
-        secureEntry={false}
-        val={email}
-        onchange={e => setemail(e)}
-      />
+    <Formik
+      initialValues={{email: ''}}
+      validationSchema={validationSchema}
+      onSubmit={values => onSubmitFunction(values)}>
+      {({handleChange, handleSubmit, values, errors, touched}) => (
+        <View style={styles.mncontainer}>
+          <View style={styles.backheader}>
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <Ionicicons name="arrow-back-sharp" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+          <Heading
+            type="h2"
+            textstyle={styles.mntext}
+            text={`Forgot Password`}
+          />
+          <BodyText
+            type="md"
+            textstyle={styles.bodytext}
+            text={`Please enter your email address \n below and we will send you a link to\n reset password`}
+          />
+          <DynamicInput
+            placeholder="Email"
+            secureEntry={false}
+            val={values.email}
+            onchange={handleChange('email')}
+          />
+          {errors.email && touched.email && <Text>{errors.email}</Text>}
 
-      <View style={styles.center}>
-        <DynamicButton
-          btnfunction={onSubmitFunction}
-          textstyle={styles.btntext1}
-          btnstyle={{...styles.btnstyle1, ...styles.center}}
-          text={'Reset Password'}></DynamicButton>
-      </View>
-    </View>
+          <View style={styles.center}>
+            <DynamicButton
+              btnfunction={handleSubmit}
+              textstyle={styles.btntext1}
+              btnstyle={{...styles.btnstyle1, ...styles.center}}
+              text={'Reset Password'}></DynamicButton>
+          </View>
+        </View>
+      )}
+    </Formik>
   );
 }
 

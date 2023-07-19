@@ -3,6 +3,8 @@ import React from 'react';
 
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
 
 import {colors} from '../utils/colors';
 import Heading from '../components/Typography/Heading';
@@ -11,19 +13,27 @@ import DynamicInput from '../components/DynamicInput';
 import DynamicButton from '../components/DynamicButton';
 import {screennames} from '../utils/screennames';
 
-export default function SignupScreen({navigation, route}) {
-  const [email, setemail] = React.useState('');
-  const [pass, setpass] = React.useState('');
-  const [confirmpass, setconfirmpass] = React.useState('');
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  pass: Yup.string().required('Password is required'),
+  confirmpass: Yup.string()
+    .oneOf([Yup.ref('pass'), null], 'Passwords must match')
+    .required('Confirm Password is required'),
+});
 
-  const onSubmitFunction = async () => {
+export default function SignupScreen({navigation, route}) {
+  const onSubmitFunction = async values => {
     try {
-      if (email === '' || pass === '' || confirmpass === '') {
-        alert('Fill All Feilds');
-      } else if (pass !== confirmpass) {
-        alert('Password and Current Password Should be Same');
+      if (
+        values.email === '' ||
+        values.pass === '' ||
+        values.confirmpass === ''
+      ) {
+        alert('Fill All Fields');
+      } else if (values.pass !== values.confirmpass) {
+        alert('Password and Confirm Password Should be Same');
       } else {
-        alert(email, pass);
+        alert(JSON.stringify(values));
       }
     } catch {}
   };
@@ -35,62 +45,81 @@ export default function SignupScreen({navigation, route}) {
   };
 
   return (
-    <View style={styles.mncontainer}>
-      <Heading
-        type="h2"
-        textstyle={styles.mntext}
-        text={`Try BOXD for free for 2 weeks\n Quick and simple signup\n No card required`}
-      />
-      <DynamicInput
-        placeholder="Email"
-        secureEntry={false}
-        val={email}
-        onchange={e => setemail(e)}
-      />
-      <DynamicInput
-        placeholder="Password"
-        secureEntry={true}
-        val={pass}
-        onchange={e => setpass(e)}
-      />
-      <DynamicInput
-        placeholder="Confirm Password"
-        secureEntry={true}
-        val={confirmpass}
-        onchange={e => setconfirmpass(e)}
-      />
-      <View style={styles.center}>
-        <DynamicButton
-          btnfunction={onSubmitFunction}
-          textstyle={styles.btntext1}
-          btnstyle={styles.btnstyle1}
-          text={'Create my free account'}>
-          <Entypo name="chevron-thin-right" size={18} color={colors.black} />
-        </DynamicButton>
-        <DynamicButton
-          btnfunction={googleFunction}
-          textstyle={styles.btntext2}
-          btnstyle={styles.btnstyle2}
-          text={'Continue with Google'}
-          icondirection="left">
-          <Image
-            source={require('../assets/google_icon.png')}
-            style={styles.gimage}
+    <Formik
+      initialValues={{email: '', pass: '', confirmpass: ''}}
+      validationSchema={validationSchema}
+      onSubmit={values => onSubmitFunction(values)}>
+      {({handleChange, handleSubmit, values, errors, touched}) => (
+        <View style={styles.mncontainer}>
+          <Heading
+            type="h2"
+            textstyle={styles.mntext}
+            text={`Try BOXD for free for 2 weeks\n Quick and simple signup\n No card required`}
           />
-        </DynamicButton>
-        <View style={styles.center}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate(screennames.login)}
-            style={[styles.center]}>
-            <BodyText
-              textstyle={styles.reditext}
-              type="lg"
-              text="Already with BOXD?Log in here"
-            />
-          </TouchableOpacity>
+          <DynamicInput
+            placeholder="Email"
+            secureEntry={false}
+            val={values.email}
+            onchange={handleChange('email')}
+          />
+          {errors.email && touched.email && <Text>{errors.email}</Text>}
+
+          <DynamicInput
+            placeholder="Password"
+            secureEntry={true}
+            val={values.pass}
+            onchange={handleChange('pass')}
+          />
+          {errors.pass && touched.pass && <Text>{errors.pass}</Text>}
+
+          <DynamicInput
+            placeholder="Confirm Password"
+            secureEntry={true}
+            val={values.confirmpass}
+            onchange={handleChange('confirmpass')}
+          />
+          {errors.confirmpass && touched.confirmpass && (
+            <Text>{errors.confirmpass}</Text>
+          )}
+
+          <View style={styles.center}>
+            <DynamicButton
+              btnfunction={handleSubmit}
+              textstyle={styles.btntext1}
+              btnstyle={styles.btnstyle1}
+              text={'Create my free account'}>
+              <Entypo
+                name="chevron-thin-right"
+                size={18}
+                color={colors.black}
+              />
+            </DynamicButton>
+            <DynamicButton
+              btnfunction={googleFunction}
+              textstyle={styles.btntext2}
+              btnstyle={styles.btnstyle2}
+              text={'Continue with Google'}
+              icondirection="left">
+              <Image
+                source={require('../assets/google_icon.png')}
+                style={styles.gimage}
+              />
+            </DynamicButton>
+            <View style={styles.center}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(screennames.login)}
+                style={[styles.center]}>
+                <BodyText
+                  textstyle={styles.reditext}
+                  type="lg"
+                  text="Already with BOXD?Log in here"
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
+      )}
+    </Formik>
   );
 }
 
