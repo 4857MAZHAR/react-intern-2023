@@ -2,16 +2,16 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 
 //components
-import Heading from '../components/Typography/Heading';
-import BodyText from '../components/Typography/BodyText';
-import DynamicInput from '../components/DynamicInput';
-import DynamicButton from '../components/DynamicButton';
+import Heading from '../../components/Typography/Heading';
+import BodyText from '../../components/Typography/BodyText';
+import DynamicInput from '../../components/DynamicInput';
+import DynamicButton from '../../components/DynamicButton';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import {screennames} from '../utils/screennames';
-import {colors} from '../utils/theme/colors/colors';
+import {screennames} from '../../utils/screennames';
+import {colors} from '../../utils/theme/colors/colors';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -62,7 +62,9 @@ export default function SignupScreen({navigation, route}) {
             val={values.email}
             onchange={handleChange('email')}
           />
-          {errors.email && touched.email && <Text>{errors.email}</Text>}
+          {errors.email && touched.email && (
+            <Text style={styles.errortext}>{errors.email}</Text>
+          )}
 
           <DynamicInput
             placeholder="Password"
@@ -70,7 +72,9 @@ export default function SignupScreen({navigation, route}) {
             val={values.pass}
             onchange={handleChange('pass')}
           />
-          {errors.pass && touched.pass && <Text>{errors.pass}</Text>}
+          {errors.pass && touched.pass && (
+            <Text style={styles.errortext}>{errors.pass}</Text>
+          )}
 
           <DynamicInput
             placeholder="Confirm Password"
@@ -79,7 +83,7 @@ export default function SignupScreen({navigation, route}) {
             onchange={handleChange('confirmpass')}
           />
           {errors.confirmpass && touched.confirmpass && (
-            <Text>{errors.confirmpass}</Text>
+            <Text style={styles.errortext}>{errors.confirmpass}</Text>
           )}
 
           <View style={styles.center}>
@@ -101,7 +105,7 @@ export default function SignupScreen({navigation, route}) {
               text={'Continue with Google'}
               icondirection="left">
               <Image
-                source={require('../assets/google_icon.png')}
+                source={require('../../assets/google_icon.png')}
                 style={styles.gimage}
               />
             </DynamicButton>
@@ -178,5 +182,8 @@ const styles = StyleSheet.create({
     color: colors.black,
     marginTop: 30,
     textDecorationLine: 'underline',
+  },
+  errortext: {
+    color: colors.red,
   },
 });

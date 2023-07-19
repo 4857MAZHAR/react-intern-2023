@@ -2,15 +2,15 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 //components
-import Heading from '../components/Typography/Heading';
-import BodyText from '../components/Typography/BodyText';
-import DynamicInput from '../components/DynamicInput';
-import DynamicButton from '../components/DynamicButton';
+import Heading from '../../components/Typography/Heading';
+import BodyText from '../../components/Typography/BodyText';
+import DynamicInput from '../../components/DynamicInput';
+import DynamicButton from '../../components/DynamicButton';
 
 import Ionicicons from 'react-native-vector-icons/Ionicons';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import {colors} from '../utils/theme/colors/colors';
+import {colors} from '../../utils/theme/colors/colors';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -55,7 +55,9 @@ export default function ForgotPassword({navigation, route}) {
             val={values.email}
             onchange={handleChange('email')}
           />
-          {errors.email && touched.email && <Text>{errors.email}</Text>}
+          {errors.email && touched.email && (
+            <Text style={styles.errortext}>{errors.email}</Text>
+          )}
 
           <View style={styles.center}>
             <DynamicButton
@@ -137,5 +139,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.black,
     marginBottom: 10,
+  },
+  errortext: {
+    color: colors.red,
   },
 });

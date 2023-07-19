@@ -58,7 +58,9 @@ export default function LoginScreen({navigation, route}) {
             val={values.email}
             onchange={handleChange('email')}
           />
-          {errors.email && touched.email && <Text>{errors.email}</Text>}
+          {errors.email && touched.email && (
+            <Text style={styles.errortext}>{errors.email}</Text>
+          )}
 
           <DynamicInput
             placeholder="Password"
@@ -66,7 +68,9 @@ export default function LoginScreen({navigation, route}) {
             val={values.pass}
             onchange={handleChange('pass')}
           />
-          {errors.pass && touched.pass && <Text>{errors.pass}</Text>}
+          {errors.pass && touched.pass && (
+            <Text style={styles.errortext}>{errors.pass}</Text>
+          )}
           <View style={styles.center}>
             <DynamicButton
               btnfunction={handleSubmit}
@@ -80,7 +84,7 @@ export default function LoginScreen({navigation, route}) {
               text={'Sign in with Google'}
               icondirection="left">
               <Image
-                source={require('../assets/google_icon.png')}
+                source={require('../../assets/google_icon.png')}
                 style={styles.gimage}
               />
             </DynamicButton>
@@ -163,5 +167,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  errortext: {
+    color: colors.red,
   },
 });
