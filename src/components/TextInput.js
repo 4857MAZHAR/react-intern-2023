@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { TextInput, View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import EyeIcon from "./Icons/EyeIcon";
 import EyeInvisible from "./Icons/EyeInvisible";
+import { COLORS } from "../utils";
 
-const CustomTextInput = ({ placeholder, onChangeText, secureTextEntry, error }) => {
+const CustomTextInput = ({ placeholder, onChangeText, secureTextEntry, eyeVis, error }) => {
  const [isPasswordVisible, setPasswordVisible] = useState(false);
  const [isFocused, setIsFocused] = useState(false);
 
@@ -36,7 +37,7 @@ const CustomTextInput = ({ placeholder, onChangeText, secureTextEntry, error }) 
      onBlur={handleBlur}
      placeholderTextColor="#C9C9E1"
     />
-    {secureTextEntry && (
+    {eyeVis && secureTextEntry && (
      <TouchableOpacity onPress={togglePasswordVisibility} style={styles.iconContainer}>
       {isPasswordVisible ? <EyeInvisible width={30} height={30} /> : <EyeIcon width={30} height={30} />}
      </TouchableOpacity>
@@ -59,26 +60,27 @@ const styles = StyleSheet.create({
   marginTop: 8,
   flex: 1,
   height: 50,
-  backgroundColor: 'white',
-  borderColor: '#AEA9A6',
+  backgroundColor: COLORS.white,
+  borderColor: COLORS.inputBorderGray,
   borderWidth: 2,
   marginBottom: 10,
-  color: 'black',
+  color: COLORS.black,
   paddingHorizontal: 10,
   borderRadius: 5,
+  fontSize: 18
  },
  inputFocused: {
-  borderColor: 'black',
+  borderColor: COLORS.black,
  },
  inputError: {
-  borderColor: 'red',
+  borderColor: COLORS.red,
  },
  iconContainer: {
   position: 'absolute',
   right: 10,
  },
  errorText: {
-  color: 'red',
+  color: COLORS.red,
   fontSize: 10
  },
 });

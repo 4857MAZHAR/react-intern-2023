@@ -3,11 +3,15 @@ import { Text, View, Button, StyleSheet, TouchableOpacity, ScrollView } from 're
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import CustomTextInput from '../../components/CustomTextInput';
-import CustomSignInButton from "../../components/CustomSignInButton";
+import TextInput from '../../components/TextInput';
+import SignInButton from "../../components/SignInButton";
 import IconButton from "../../components/IconButton";
 import TextButton from "../../components/TextButton";
-// import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+import { SCREEN_NAME } from "../../utils/Const";
+import { COLORS } from "../../utils";
+import { width, height, totalSize } from 'react-native-dimension';
+
+
 
 const validationSchema = yup.object().shape({
  email: yup.string().email('Invalid email').required('Email is required'),
@@ -20,44 +24,21 @@ const SignUp = ({ navigation }) => {
   resolver: yupResolver(validationSchema),
  });
 
- console.log(errors);
+
+
+
+
+
 
  const onSubmit = (data) => {
   console.log(data);
  };
 
  const handleLoginHereButton = () => {
-  navigation.navigate("Login");
+  navigation.navigate(SCREEN_NAME.Login);
  };
 
- useEffect(() => {
-  // GoogleSignin.configure({
-  //  webClientId: 'YOUR_WEB_CLIENT_ID',
-  // });
- }, []);
 
- const handleGoogleSignIn = async () => {
-  // try {
-  //  await GoogleSignin.hasPlayServices();
-  //  const userInfo = await GoogleSignin.signIn();
-  //  console.log(userInfo);
-  //  // Use the userInfo object for further processing (e.g., sending to the server)
-  // } catch (error) {
-  //  if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-  //   // Handle sign-in cancellation
-  //   console.log('Sign-in cancelled');
-  //  } else if (error.code === statusCodes.IN_PROGRESS) {
-  //   // Handle sign-in in progress
-  //   console.log('Sign-in in progress');
-  //  } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-  //   // Handle Play Services not available
-  //   console.log('Play Services not available');
-  //  } else {
-  //   // Handle other errors
-  //   console.log('Error occurred', error);
-  //  }
-  // }
- };
 
  return (
   <ScrollView contentContainerStyle={styles.container}>
@@ -74,7 +55,7 @@ const SignUp = ({ navigation }) => {
      name="email"
      defaultValue=""
      render={({ field }) => (
-      <CustomTextInput
+      <TextInput
        placeholder="Email"
        onChangeText={field.onChange}
        value={field.value}
@@ -87,11 +68,12 @@ const SignUp = ({ navigation }) => {
      name="password"
      defaultValue=""
      render={({ field }) => (
-      <CustomTextInput
+      <TextInput
        placeholder="Password"
        onChangeText={field.onChange}
        value={field.value}
        secureTextEntry={true}
+       eyeVis={true}
        error={errors.password?.message}
       />
      )}
@@ -101,18 +83,19 @@ const SignUp = ({ navigation }) => {
      name="confirmPassword"
      defaultValue=""
      render={({ field }) => (
-      <CustomTextInput
+      <TextInput
        placeholder="Confirm Password"
        onChangeText={field.onChange}
        value={field.value}
        secureTextEntry={true}
+       eyeVis={true}
        error={errors.confirmPassword?.message}
       />
      )}
     />
    </View>
-   <CustomSignInButton text="Create my Free Account" nextLineText=">" onPress={handleSubmit(onSubmit)} />
-   <IconButton text="Continue with Google" onPress={handleGoogleSignIn} />
+   <SignInButton text="Create my Free Account" nextLineText=">" onPress={handleSubmit(onSubmit)} />
+   <IconButton text="Continue with Google" />
    <TextButton text="Already with BOXD? Log in here" onPress={handleLoginHereButton} />
   </ScrollView>
  );
@@ -122,12 +105,12 @@ const styles = StyleSheet.create({
  container: {
   flexGrow: 1,
   alignItems: 'center',
-  backgroundColor: '#FEEADF',
+  backgroundColor: COLORS.primaryBackgroundColor,
   padding: 15,
  },
  lineText: {
   fontSize: 24,
-  color: 'black',
+  color: COLORS.black,
   textAlign: 'center',
   fontWeight: 'bold',
   marginTop: 20,

@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
+import { COLORS } from "../utils";
 
 const TextButton = ({ text, onPress }) => {
  return (
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
   textDecorationLine: 'underline', // underline text
   fontSize: 22,
   marginTop: 30,
-  color: 'black'
+  color: COLORS.black
  },
 });
 export default TextButton;
