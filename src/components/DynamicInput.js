@@ -1,16 +1,9 @@
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
+import {View, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
 
 import Feather from 'react-native-vector-icons/Feather';
+import {colors} from '../utils/theme/colors/colors';
 
-import {colors} from '../utils/colors';
 export default function DynamicInput({
   onchange,
   val,

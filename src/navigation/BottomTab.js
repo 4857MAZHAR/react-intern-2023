@@ -1,18 +1,15 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 
-import {
-  BottomTabBarProps,
-  BottomTabNavigationOptions,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 const Tab = createBottomTabNavigator();
-import Feather from 'react-native-vector-icons/Feather';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
+//screens
 import HomeScreen from '../screens/HomeScreen';
 import SettingScreen from '../screens/SettingScree';
+
 import {screennames} from '../utils/screennames';
+import Feather from 'react-native-vector-icons/Feather';
 
 export default function BottomTab({navigation, route}) {
   return (

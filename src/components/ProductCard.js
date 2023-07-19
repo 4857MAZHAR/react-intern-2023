@@ -1,7 +1,7 @@
-import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import {StyleSheet, ImageBackground} from 'react-native';
 import React from 'react';
 
-import {colors} from '../utils/colors';
+import {colors} from '../utils/theme/colors/colors';
 
 export default function ProductCard({data}) {
   return (

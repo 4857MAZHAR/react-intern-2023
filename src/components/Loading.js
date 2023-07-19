@@ -1,8 +1,9 @@
 import React from 'react';
 import {Modal, View, ActivityIndicator, Dimensions} from 'react-native';
+
 const windowHeight = Dimensions.get('window').height;
 
-import {colors} from '../utils/colors';
+import {colors} from '../utils/theme/colors/colors';
 
 function Loading({show}) {
   return (

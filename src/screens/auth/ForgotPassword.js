@@ -1,17 +1,16 @@
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-import Ionicicons from 'react-native-vector-icons/Ionicons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import {Formik} from 'formik';
-import * as Yup from 'yup';
-
-import {colors} from '../utils/colors';
+//components
 import Heading from '../components/Typography/Heading';
 import BodyText from '../components/Typography/BodyText';
 import DynamicInput from '../components/DynamicInput';
 import DynamicButton from '../components/DynamicButton';
-import {screennames} from '../utils/screennames';
+
+import Ionicicons from 'react-native-vector-icons/Ionicons';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
+import {colors} from '../utils/theme/colors/colors';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),

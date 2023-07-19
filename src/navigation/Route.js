@@ -2,13 +2,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
-import SignupScreen from '../screens/SignupScreen';
-import LoginScreen from '../screens/LoginScreen';
-import ForgotPassword from '../screens/ForgotPassword';
+//screens
+import SignupScreen from '../screens/auth/SignupScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import ForgotPassword from '../screens/auth/ForgotPassword';
 import DrawerNavigation from './DrawerNavigation';
 import {screennames} from '../utils/screennames';
 
-export default function RouteNavigation() {
+export default function Route() {
   return (
     <NavigationContainer>
       <Stack.Navigator

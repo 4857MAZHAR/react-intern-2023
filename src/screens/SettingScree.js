@@ -1,9 +1,11 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 
-import {colors} from '../utils/colors';
-import {screennames} from '../utils/screennames';
+//components
 import DynamicButton from '../components/DynamicButton';
+
+import {colors} from '../utils/theme/colors/colors';
+import {screennames} from '../utils/screennames';
 
 export default function SettingScreen({navigation, route}) {
   return (

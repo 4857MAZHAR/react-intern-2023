@@ -1,7 +1,5 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 import React from 'react';
-
-import {colors} from '../../utils/colors';
 
 export default function Heading({text = '', textstyle = {}, type = 'h1'}) {
   const types = {
@@ -21,7 +19,7 @@ export default function Heading({text = '', textstyle = {}, type = 'h1'}) {
 
 const styles = StyleSheet.create({
   text: {
-    fontWeight:"bold",
-    textAlign:"center"
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });

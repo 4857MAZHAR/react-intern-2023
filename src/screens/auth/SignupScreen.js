@@ -1,28 +1,37 @@
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 
-import Ionicicons from 'react-native-vector-icons/Ionicons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import {Formik} from 'formik';
-import * as Yup from 'yup';
-
-import {colors} from '../utils/colors';
+//components
 import Heading from '../components/Typography/Heading';
 import BodyText from '../components/Typography/BodyText';
 import DynamicInput from '../components/DynamicInput';
 import DynamicButton from '../components/DynamicButton';
+
+import Entypo from 'react-native-vector-icons/Entypo';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
 import {screennames} from '../utils/screennames';
+import {colors} from '../utils/theme/colors/colors';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   pass: Yup.string().required('Password is required'),
+  confirmpass: Yup.string()
+    .oneOf([Yup.ref('pass'), null], 'Passwords must match')
+    .required('Confirm Password is required'),
 });
 
-export default function LoginScreen({navigation, route}) {
+export default function SignupScreen({navigation, route}) {
   const onSubmitFunction = async values => {
     try {
-      if (values.email === '' || values.pass === '') {
+      if (
+        values.email === '' ||
+        values.pass === '' ||
+        values.confirmpass === ''
+      ) {
         alert('Fill All Fields');
+      } else if (values.pass !== values.confirmpass) {
+        alert('Password and Confirm Password Should be Same');
       } else {
         alert(JSON.stringify(values));
       }
@@ -37,20 +46,15 @@ export default function LoginScreen({navigation, route}) {
 
   return (
     <Formik
-      initialValues={{email: '', pass: ''}}
+      initialValues={{email: '', pass: '', confirmpass: ''}}
       validationSchema={validationSchema}
       onSubmit={values => onSubmitFunction(values)}>
       {({handleChange, handleSubmit, values, errors, touched}) => (
         <View style={styles.mncontainer}>
-          <View style={styles.backheader}>
-            <TouchableOpacity onPress={() => navigation.pop()}>
-              <Ionicicons name="arrow-back-sharp" size={24} color="black" />
-            </TouchableOpacity>
-          </View>
           <Heading
             type="h2"
             textstyle={styles.mntext}
-            text={`Sign in to BOXD`}
+            text={`Try BOXD for free for 2 weeks\n Quick and simple signup\n No card required`}
           />
           <DynamicInput
             placeholder="Email"
@@ -67,17 +71,34 @@ export default function LoginScreen({navigation, route}) {
             onchange={handleChange('pass')}
           />
           {errors.pass && touched.pass && <Text>{errors.pass}</Text>}
+
+          <DynamicInput
+            placeholder="Confirm Password"
+            secureEntry={true}
+            val={values.confirmpass}
+            onchange={handleChange('confirmpass')}
+          />
+          {errors.confirmpass && touched.confirmpass && (
+            <Text>{errors.confirmpass}</Text>
+          )}
+
           <View style={styles.center}>
             <DynamicButton
               btnfunction={handleSubmit}
               textstyle={styles.btntext1}
-              btnstyle={{...styles.btnstyle1, ...styles.center}}
-              text={'Sign in'}></DynamicButton>
+              btnstyle={styles.btnstyle1}
+              text={'Create my free account'}>
+              <Entypo
+                name="chevron-thin-right"
+                size={18}
+                color={colors.black}
+              />
+            </DynamicButton>
             <DynamicButton
               btnfunction={googleFunction}
               textstyle={styles.btntext2}
               btnstyle={styles.btnstyle2}
-              text={'Sign in with Google'}
+              text={'Continue with Google'}
               icondirection="left">
               <Image
                 source={require('../assets/google_icon.png')}
@@ -86,12 +107,12 @@ export default function LoginScreen({navigation, route}) {
             </DynamicButton>
             <View style={styles.center}>
               <TouchableOpacity
-                onPress={() => navigation.navigate(screennames.forgotpass)}
+                onPress={() => navigation.navigate(screennames.login)}
                 style={[styles.center]}>
                 <BodyText
                   textstyle={styles.reditext}
                   type="lg"
-                  text="Forgotten your password?"
+                  text="Already with BOXD?Log in here"
                 />
               </TouchableOpacity>
             </View>
@@ -157,11 +178,5 @@ const styles = StyleSheet.create({
     color: colors.black,
     marginTop: 30,
     textDecorationLine: 'underline',
-  },
-  backheader: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
 });

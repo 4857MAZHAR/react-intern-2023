@@ -2,9 +2,11 @@ import React, {useEffect} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
+//components
 import ProductCard from '../components/ProductCard';
-import {fetchProducts} from '../store/productslice';
 import Loading from '../components/Loading';
+
+import {fetchProducts} from '../store/productslice';
 
 export default function HomeScreen({navigation, route}) {
   const dispatch = useDispatch();

@@ -1,7 +1,5 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {Text} from 'react-native';
 import React from 'react';
-
-import {colors} from '../../utils/colors';
 
 export default function BodyText({text = '', textstyle = {}, type = 'rg'}) {
   const types = {
