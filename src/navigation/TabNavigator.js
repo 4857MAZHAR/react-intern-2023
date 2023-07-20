@@ -44,7 +44,7 @@ const TabNavigator = () => {
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons
             color={color}
-            name="plus-circle"
+            name="text-box-outline"
             size={size}
           />
         ),
@@ -57,7 +57,7 @@ const TabNavigator = () => {
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons
             color={color}
-            name="plus-circle"
+            name="map-marker-outline"
             size={size}
           />
         ),
@@ -70,7 +70,7 @@ const TabNavigator = () => {
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons
             color={color}
-            name="plus-circle"
+            name="dots-horizontal"
             size={size}
           />
         ),

@@ -1,5 +1,5 @@
-import { View, Dimensions, StyleSheet ,TouchableOpacity} from 'react-native';
-import React from 'react';
+import { View, Dimensions, StyleSheet ,TouchableOpacity,Text} from 'react-native';
+import React, { useContext } from 'react';
 
 //import formik & yup libraries
 import { Formik } from 'formik';
@@ -21,12 +21,18 @@ import colors from '../utils/colors';
 //import Material Community icons
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+//import auth context for successful login
+import { AuthContext } from '../context/AuthContext';
+
 
 
 const screenWidth = Dimensions.get('window').width;
 
 
 const Login = ({navigation}) => {
+  
+  const {login}=useContext(AuthContext);
+
 
   const handleGoogleSignIn = async () => {
     try {
@@ -39,13 +45,12 @@ const Login = ({navigation}) => {
     }
   };
 
-  const handleSignUp = (values) => {
+  const handleLogin = (values) => {
     console.log('Form values:', values);
-    // Implement signup logic here
+   
+    login(values.email,values.password);
     
-    // navigation.navigate('Dashboard', {
-    //   screen: 'Dashboard',
-    // });
+   
   };
 
   const validationSchema = Yup.object().shape({
@@ -63,14 +68,17 @@ const Login = ({navigation}) => {
       </TouchableOpacity>
       
     </View>
+     
       <View style={styles.text}>
         <CustomText style={styles.heading} text="Sign in to BOXD" />
       </View>
+
       <View style={styles.form}>
+
         <Formik
           initialValues={{ email: '', password: '' }}
           validationSchema={validationSchema}
-          onSubmit={handleSignUp}
+          onSubmit={handleLogin}
         >
           {({ handleChange, handleSubmit, values, errors, touched }) => (
             <>
@@ -83,6 +91,8 @@ const Login = ({navigation}) => {
               {errors.email && touched.email ? (
                 <Error error={errors.email} />
               ) : null}
+
+
               <TextInputField
                 placeholder="Password"
                 value={values.password}
@@ -92,6 +102,8 @@ const Login = ({navigation}) => {
               {errors.password && touched.password ? (
                 <Error error={errors.password} />
               ) : null}
+
+
               <CustomButton
                 title="Sign in"
                 onPress={handleSubmit}
@@ -133,10 +145,10 @@ const styles = StyleSheet.create({
     flex: 1.5,
   },
   heading:{
-fontSize:25,
+    fontSize:25,
   },
   form: {
-  flex: 5,
+    flex: 5,
   },
   error: {
     color: 'red',

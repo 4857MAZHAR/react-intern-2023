@@ -1,13 +1,19 @@
-import React from 'react';
+import React,{useContext} from 'react';
+
+//import navigations
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Auth from '../navigation/AuthNavigator';
 import Tab from '../navigation/TabNavigator';
+
+//import auth context
+import { AuthContext } from '../context/AuthContext';
 
 
 
 
 const AppNavigator = () => {
-  const isLoggedIn=false;
+  const {isLoggedIn}=useContext(AuthContext);
+ 
   const Stack = createNativeStackNavigator(); 
 
   if(!isLoggedIn)
@@ -15,7 +21,6 @@ const AppNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown:false}} >
       <Stack.Screen name="Auth" component={Auth} />
-      {/* <Stack.Screen name="Tab" component={Tab}  /> */}
     </Stack.Navigator>
   );
   }

@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useContext} from 'react'
 import { StyleSheet } from 'react-native'
 
 //import google signin libraries
@@ -8,7 +8,12 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './src/navigation/AppNavigator';
 
+//import auth provider
+import {AuthProvider} from './src/context/AuthContext';
+
+
 function App() {
+  
 
   useEffect(() => {
     // Initialize GoogleSignin
@@ -21,10 +26,13 @@ function App() {
   }, []);
 
   return (
-  <NavigationContainer>
+    <AuthProvider>
+        <NavigationContainer>
      {/* <AuthNavigator /> */}
      <AppNavigator />
   </NavigationContainer> 
+    </AuthProvider>
+  
   )
 }
 const styles = StyleSheet.create({

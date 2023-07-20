@@ -1,5 +1,5 @@
-import { View, StyleSheet,Dimensions,KeyboardAvoidingView } from 'react-native';
-import React from 'react';
+import { View, StyleSheet,Dimensions,Text } from 'react-native';
+import React,{ useContext } from 'react';
 
 //Formik & yup imports
 import { Formik } from 'formik';
@@ -19,12 +19,18 @@ import CustomLink from '../components/CustomLink';
 //import custom colors
 import colors from '../utils/colors';
 
+//import auth context
+import { AuthContext } from '../context/AuthContext';
 
 const screenWidth = Dimensions.get('window').width;
 
 
 const SignupForm = (props) => {
+
+
+  const {register}=useContext(AuthContext);
   
+
   const handleGoogleSignIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
@@ -36,9 +42,14 @@ const SignupForm = (props) => {
     }
   };
 
+
   const handleSignUp = (values) => {
     console.log('Form values:', values);
     // Implement  signup logic
+    console.log(values.email);
+    register(values.email,values.password);
+
+    
   };
 
   //formik validation schema
@@ -53,12 +64,13 @@ const SignupForm = (props) => {
   return (
     
     <View style={styles.container}>
-      
+     
       <View style={styles.text}>
         <CustomText style={styles.heading} text="Try BOXD for free for 2 weeks" />
         <CustomText style={styles.heading} text="Quick and simple signup" />
         <CustomText style={styles.heading} text="No card required" />
       </View>
+
       <Formik
         initialValues={{
           email: '',
@@ -79,6 +91,7 @@ const SignupForm = (props) => {
             {errors.email && touched.email ? (
               <Error error={errors.email} />
             ) : null}
+
             <TextInputField
               placeholder="Password"
               value={values.password}
@@ -88,6 +101,7 @@ const SignupForm = (props) => {
             {errors.password && touched.password ? (
               <Error error={errors.password} />
             ) : null}
+
             <TextInputField
               placeholder="Confirm password"
               value={values.confirmPassword}
@@ -152,14 +166,13 @@ const styles = StyleSheet.create({
           justifyContent:'center'
         },
         signInBtnText:{
-          
         fontWeight:'bold',
         padding:10,
         fontSize:16,
 
          },
         link:{
-          marginTop:80,
+       marginTop:80,
        justifyContent:'space-between',
        alignItems:'flex-end',
        
