@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Invoices from '../screens/Invoices';
 import JobTracking from '../screens/JobTracking';
 import ForYou from '../screens/ForYou';
+import Screen from '../utils/ScreenNames';
 
 
 
@@ -14,7 +15,7 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator>
     <Tab.Screen
-      name="Dashboard"
+      name={Screen.DASHBOARD}
       component={Dashboard}
       options={{
         tabBarLabel: 'Home',
@@ -24,7 +25,7 @@ const TabNavigator = () => {
       }}
     />
     <Tab.Screen
-      name="Expenses"
+      name={Screen.EXPENSES}
       component={Expenses}
       options={({ navigation }) => ({
         tabBarIcon: ({ color, size }) => (
@@ -37,7 +38,7 @@ const TabNavigator = () => {
       })}
     />
     <Tab.Screen
-      name="Invoices"
+      name={Screen.INVOICE}
       component={Invoices}
       options={({ navigation }) => ({
         tabBarIcon: ({ color, size }) => (
@@ -50,7 +51,7 @@ const TabNavigator = () => {
       })}
     />
     <Tab.Screen
-      name="Job Tracking"
+      name={Screen.JOB_TRACKING}
       component={JobTracking}
       options={({ navigation }) => ({
         tabBarIcon: ({ color, size }) => (
@@ -63,7 +64,7 @@ const TabNavigator = () => {
       })}
     />
     <Tab.Screen
-      name="For You"
+      name={Screen.FOR_YOU}
       component={ForYou}
       options={({ navigation }) => ({
         tabBarIcon: ({ color, size }) => (

@@ -6,7 +6,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 //import navigation container
 import { NavigationContainer } from '@react-navigation/native';
-import AuthNavigator from './src/navigation/AuthNavigator';
+import AppNavigator from './src/navigation/AppNavigator';
 
 function App() {
 
@@ -22,7 +22,8 @@ function App() {
 
   return (
   <NavigationContainer>
-     <AuthNavigator />
+     {/* <AuthNavigator /> */}
+     <AppNavigator />
   </NavigationContainer> 
   )
 }
