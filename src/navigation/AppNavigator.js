@@ -7,7 +7,7 @@ import Tab from '../navigation/TabNavigator';
 
 
 const AppNavigator = () => {
-  const isLoggedIn=true;
+  const isLoggedIn=false;
   const Stack = createNativeStackNavigator(); 
 
   if(!isLoggedIn)
