@@ -1,4 +1,12 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from 'react-native';
 import React from 'react';
 
 //components
@@ -28,51 +36,62 @@ export default function ForgotPassword({navigation, route}) {
   };
 
   return (
-    <Formik
-      initialValues={{email: ''}}
-      validationSchema={validationSchema}
-      onSubmit={values => onSubmitFunction(values)}>
-      {({handleChange, handleSubmit, values, errors, touched}) => (
-        <View style={styles.mncontainer}>
-          <View style={styles.backheader}>
-            <TouchableOpacity onPress={() => navigation.pop()}>
-              <Ionicicons name="arrow-back-sharp" size={24} color="black" />
-            </TouchableOpacity>
-          </View>
-          <Heading
-            type="h2"
-            textstyle={styles.mntext}
-            text={`Forgot Password`}
-          />
-          <BodyText
-            type="md"
-            textstyle={styles.bodytext}
-            text={`Please enter your email address \n below and we will send you a link to\n reset password`}
-          />
-          <DynamicInput
-            placeholder="Email"
-            secureEntry={false}
-            val={values.email}
-            onchange={handleChange('email')}
-          />
-          {errors.email && touched.email && (
-            <Text style={styles.errortext}>{errors.email}</Text>
-          )}
+    <KeyboardAvoidingView
+      style={styles.gb}
+      enabled
+      behavior={Platform.OS === 'ios' ? 'padding' : null}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Formik
+          initialValues={{email: ''}}
+          validationSchema={validationSchema}
+          onSubmit={values => onSubmitFunction(values)}>
+          {({handleChange, handleSubmit, values, errors, touched}) => (
+            <View style={styles.mncontainer}>
+              <View style={styles.backheader}>
+                <TouchableOpacity onPress={() => navigation.pop()}>
+                  <Ionicicons name="arrow-back-sharp" size={24} color="black" />
+                </TouchableOpacity>
+              </View>
+              <Heading
+                type="h2"
+                textstyle={styles.mntext}
+                text={`Forgot Password`}
+              />
+              <BodyText
+                type="md"
+                textstyle={styles.bodytext}
+                text={`Please enter your email address \n below and we will send you a link to\n reset password`}
+              />
+              <DynamicInput
+                placeholder="Email"
+                secureEntry={false}
+                val={values.email}
+                onchange={handleChange('email')}
+              />
+              {errors.email && touched.email && (
+                <Text style={styles.errortext}>{errors.email}</Text>
+              )}
 
-          <View style={styles.center}>
-            <DynamicButton
-              btnfunction={handleSubmit}
-              textstyle={styles.btntext1}
-              btnstyle={{...styles.btnstyle1, ...styles.center}}
-              text={'Reset Password'}></DynamicButton>
-          </View>
-        </View>
-      )}
-    </Formik>
+              <View style={styles.center}>
+                <DynamicButton
+                  btnfunction={handleSubmit}
+                  textstyle={styles.btntext1}
+                  btnstyle={{...styles.btnstyle1, ...styles.center}}
+                  text={'Reset Password'}></DynamicButton>
+              </View>
+            </View>
+          )}
+        </Formik>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
+  gb: {
+    backgroundColor: colors.lightorange,
+    flex: 1,
+  },
   mncontainer: {
     flex: 1,
     backgroundColor: colors.lightorange,

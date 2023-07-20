@@ -1,4 +1,13 @@
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import React from 'react';
 
 //components
@@ -45,89 +54,101 @@ export default function SignupScreen({navigation, route}) {
   };
 
   return (
-    <Formik
-      initialValues={{email: '', pass: '', confirmpass: ''}}
-      validationSchema={validationSchema}
-      onSubmit={values => onSubmitFunction(values)}>
-      {({handleChange, handleSubmit, values, errors, touched}) => (
-        <View style={styles.mncontainer}>
-          <Heading
-            type="h2"
-            textstyle={styles.mntext}
-            text={`Try BOXD for free for 2 weeks\n Quick and simple signup\n No card required`}
-          />
-          <DynamicInput
-            placeholder="Email"
-            secureEntry={false}
-            val={values.email}
-            onchange={handleChange('email')}
-          />
-          {errors.email && touched.email && (
-            <Text style={styles.errortext}>{errors.email}</Text>
-          )}
-
-          <DynamicInput
-            placeholder="Password"
-            secureEntry={true}
-            val={values.pass}
-            onchange={handleChange('pass')}
-          />
-          {errors.pass && touched.pass && (
-            <Text style={styles.errortext}>{errors.pass}</Text>
-          )}
-
-          <DynamicInput
-            placeholder="Confirm Password"
-            secureEntry={true}
-            val={values.confirmpass}
-            onchange={handleChange('confirmpass')}
-          />
-          {errors.confirmpass && touched.confirmpass && (
-            <Text style={styles.errortext}>{errors.confirmpass}</Text>
-          )}
-
-          <View style={styles.center}>
-            <DynamicButton
-              btnfunction={handleSubmit}
-              textstyle={styles.btntext1}
-              btnstyle={styles.btnstyle1}
-              text={'Create my free account'}>
-              <Entypo
-                name="chevron-thin-right"
-                size={18}
-                color={colors.black}
+    <KeyboardAvoidingView
+      style={styles.gb}
+      enabled
+      behavior={Platform.OS === 'ios' ? 'padding' : null}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Formik
+          initialValues={{email: '', pass: '', confirmpass: ''}}
+          validationSchema={validationSchema}
+          onSubmit={values => onSubmitFunction(values)}>
+          {({handleChange, handleSubmit, values, errors, touched}) => (
+            <View style={styles.mncontainer}>
+              <Heading
+                type="h2"
+                textstyle={styles.mntext}
+                text={`Try BOXD for free for 2 weeks\n Quick and simple signup\n No card required`}
               />
-            </DynamicButton>
-            <DynamicButton
-              btnfunction={googleFunction}
-              textstyle={styles.btntext2}
-              btnstyle={styles.btnstyle2}
-              text={'Continue with Google'}
-              icondirection="left">
-              <Image
-                source={require('../../assets/google_icon.png')}
-                style={styles.gimage}
+
+              <DynamicInput
+                placeholder="Email"
+                secureEntry={false}
+                val={values.email}
+                onchange={handleChange('email')}
               />
-            </DynamicButton>
-            <View style={styles.center}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate(screennames.login)}
-                style={[styles.center]}>
-                <BodyText
-                  textstyle={styles.reditext}
-                  type="lg"
-                  text="Already with BOXD?Log in here"
-                />
-              </TouchableOpacity>
+              {errors.email && touched.email && (
+                <Text style={styles.errortext}>{errors.email}</Text>
+              )}
+
+              <DynamicInput
+                placeholder="Password"
+                secureEntry={true}
+                val={values.pass}
+                onchange={handleChange('pass')}
+              />
+              {errors.pass && touched.pass && (
+                <Text style={styles.errortext}>{errors.pass}</Text>
+              )}
+
+              <DynamicInput
+                placeholder="Confirm Password"
+                secureEntry={true}
+                val={values.confirmpass}
+                onchange={handleChange('confirmpass')}
+              />
+              {errors.confirmpass && touched.confirmpass && (
+                <Text style={styles.errortext}>{errors.confirmpass}</Text>
+              )}
+
+              <View style={styles.center}>
+                <DynamicButton
+                  btnfunction={handleSubmit}
+                  textstyle={styles.btntext1}
+                  btnstyle={styles.btnstyle1}
+                  text={'Create my free account'}>
+                  <Entypo
+                    name="chevron-thin-right"
+                    size={18}
+                    color={colors.black}
+                  />
+                </DynamicButton>
+                <DynamicButton
+                  btnfunction={googleFunction}
+                  textstyle={styles.btntext2}
+                  btnstyle={styles.btnstyle2}
+                  text={'Continue with Google'}
+                  icondirection="left">
+                  <Image
+                    source={require('../../assets/google_icon.png')}
+                    style={styles.gimage}
+                  />
+                </DynamicButton>
+                <View style={styles.center}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate(screennames.login)}
+                    style={[styles.center]}>
+                    <BodyText
+                      textstyle={styles.reditext}
+                      type="lg"
+                      text="Already with BOXD?Log in here"
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
-          </View>
-        </View>
-      )}
-    </Formik>
+          )}
+        </Formik>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
+  gb: {
+    backgroundColor: colors.lightorange,
+    flex: 1,
+  },
   mncontainer: {
     flex: 1,
     backgroundColor: colors.lightorange,
