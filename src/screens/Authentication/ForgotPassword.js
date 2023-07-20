@@ -1,13 +1,13 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import TextInput from "../../components/TextInput";
-import SignInButton from "../../components/SignInButton";
 import BackArrowIcon from "../../components/Icons/BackArrowIcon";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { SCREEN_NAME } from "../../utils/Const";
 import { COLORS } from "../../utils";
+import TextButton from "../../components/TextButton";
 
 const validationSchema = yup.object().shape({
  email: yup.string().email('Invalid email').required('You have not entered an email address'),
@@ -49,7 +49,7 @@ const ForgotPassword = ({ navigation }) => {
     />
    </View>
 
-   <SignInButton text="Reset Password" onPress={handleSubmit(onSubmit)} />
+   <TextButton text="Reset Password" isSignInButton onPress={handleSubmit(onSubmit)} />
   </ScrollView>
  );
 };

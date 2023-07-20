@@ -1,8 +1,8 @@
 import React from 'react';
-import Navigation from "./src/navigation";
+import Route from "./src/navigation/Route";
 
 const App = () => {
-  return <Navigation />;
+  return <Route />;
 };
 
 export default App;

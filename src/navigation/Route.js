@@ -16,7 +16,7 @@ import { SCREEN_NAME } from "../utils/Const";
 
 const Stack = createNativeStackNavigator();
 
-function Navigation() {
+function Route() {
  return (
   <NavigationContainer>
    <Stack.Navigator>
@@ -28,4 +28,4 @@ function Navigation() {
  );
 }
 
-export default Navigation;
+export default Route;

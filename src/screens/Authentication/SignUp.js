@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
-import { Text, View, Button, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import React from 'react';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import TextInput from '../../components/TextInput';
-import SignInButton from "../../components/SignInButton";
 import IconButton from "../../components/IconButton";
-import TextButton from "../../components/TextButton";
 import { SCREEN_NAME } from "../../utils/Const";
 import { COLORS } from "../../utils";
-import { width, height, totalSize } from 'react-native-dimension';
+import TextButton from "../../components/TextButton";
+// import { width, height, totalSize } from 'react-native-dimension';
 
 
 
@@ -24,12 +23,6 @@ const SignUp = ({ navigation }) => {
   resolver: yupResolver(validationSchema),
  });
 
-
-
-
-
-
-
  const onSubmit = (data) => {
   console.log(data);
  };
@@ -37,8 +30,6 @@ const SignUp = ({ navigation }) => {
  const handleLoginHereButton = () => {
   navigation.navigate(SCREEN_NAME.Login);
  };
-
-
 
  return (
   <ScrollView contentContainerStyle={styles.container}>
@@ -94,7 +85,7 @@ const SignUp = ({ navigation }) => {
      )}
     />
    </View>
-   <SignInButton text="Create my Free Account" nextLineText=">" onPress={handleSubmit(onSubmit)} />
+   <TextButton text="Create my Free Account >" isSignInButton onPress={handleSubmit(onSubmit)} />
    <IconButton text="Continue with Google" />
    <TextButton text="Already with BOXD? Log in here" onPress={handleLoginHereButton} />
   </ScrollView>

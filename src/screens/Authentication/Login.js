@@ -1,10 +1,9 @@
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import TextInput from "../../components/TextInput";
-import SignInButton from "../../components/SignInButton";
 import TextButton from "../../components/TextButton";
 import IconButton from "../../components/IconButton";
 import CrossIcon from "../../components/Icons/CrossIcon";
@@ -74,7 +73,7 @@ const Login = ({ navigation }) => {
      )}
     />
    </View>
-   <SignInButton text="Sign in" onPress={handleSubmit(onSubmit)} />
+   <TextButton text="Sign in" isSignInButton onPress={handleSubmit(onSubmit)} />
    <IconButton text="Sign in with Google" onPress={handleGoogleSignIn} />
    <TextButton text="Forgotten your password" onPress={handleForgotPress} />
   </ScrollView>
