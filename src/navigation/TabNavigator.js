@@ -1,5 +1,4 @@
 import React from 'react'
-import { View } from 'react-native'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Dashboard from '../screens/Dashboard'
 import Expenses from '../screens/Expenses'
@@ -11,7 +10,7 @@ import ForYou from '../screens/ForYou';
 
 
 const Tab = createBottomTabNavigator();
-const AppNavigator = () => {
+const TabNavigator = () => {
   return (
     <Tab.Navigator>
     <Tab.Screen
@@ -80,4 +79,4 @@ const AppNavigator = () => {
   )
 }
 
-export default AppNavigator
+export default TabNavigator

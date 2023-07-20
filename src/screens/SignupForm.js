@@ -1,20 +1,39 @@
-import React from 'react';
 import { View, StyleSheet,Dimensions,KeyboardAvoidingView } from 'react-native';
+import React from 'react';
+
+//Formik & yup imports
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import CenteredText from '../components/CenteredText';
+
+//import @react-native-google-signin library
+import { GoogleSignin, GoogleSigninButton,statusCodes } from '@react-native-google-signin/google-signin';
+
+//import custom Components
+import CustomText from '../components/CustomText';
 import TextInputField from '../components/TextInputField';
-import colors from '../utils/colors';
 import CustomButton from '../components/CustomButton';
 import Error from '../components/Error';
-import ActionText from '../components/ActionText';
-import CustomIconButton from '../components/CustomIconButton';
+import CustomLink from '../components/CustomLink';
+
+
+//import custom colors
+import colors from '../utils/colors';
+
+
 const screenWidth = Dimensions.get('window').width;
 
-const SignupForm = () => {
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+
+const SignupForm = (props) => {
+  
+  const handleGoogleSignIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log('Google Sign-In Success:', userInfo);
+      // Implement your logic here for handling successful Google Sign-In
+    } catch (error) {
+      console.log('Google Sign-In Error:', error.message);
+    }
   };
 
   const handleSignUp = (values) => {
@@ -22,6 +41,7 @@ const SignupForm = () => {
     // Implement  signup logic
   };
 
+  //formik validation schema
   const validationSchema = Yup.object().shape({
     email: Yup.string().required('Email is required').email('Invalid email'),
     password: Yup.string().required('Password is required'),
@@ -33,10 +53,11 @@ const SignupForm = () => {
   return (
     
     <View style={styles.container}>
+      
       <View style={styles.text}>
-        <CenteredText style={styles.heading} text="Try BOXD for free for 2 weeks" />
-        <CenteredText style={styles.heading} text="Quick and simple signup" />
-        <CenteredText style={styles.heading} text="No card required" />
+        <CustomText style={styles.heading} text="Try BOXD for free for 2 weeks" />
+        <CustomText style={styles.heading} text="Quick and simple signup" />
+        <CustomText style={styles.heading} text="No card required" />
       </View>
       <Formik
         initialValues={{
@@ -83,19 +104,17 @@ const SignupForm = () => {
                 onPress={handleSubmit}
                 textStyle={styles.signInBtnText}
               />
-            
 
-           
-              <CustomIconButton style={styles.iconbtn}
-                title="Continue with Google"
-                iconSource={require('../assets/icons/googleIcon.png')}
-                onPress={() => console.log('Login with Google')}
+              <GoogleSigninButton
+                      style={styles.googleSignInButton}
+                      size={GoogleSigninButton.Size.Wide}
+                      color={GoogleSigninButton.Color.Light}
+                      onPress={handleGoogleSignIn}
               />
             
-
-            <ActionText
+            <CustomLink
               text="Already with BOXD? Log in here"
-              onPress={() => console.log('Move to Sign in page')} style={styles.link}
+              onPress={()=>props.navigation.navigate("Login")} style={styles.link}
               textStyle={styles.linkText}
             />
           </View>
@@ -139,12 +158,8 @@ const styles = StyleSheet.create({
         fontSize:16,
 
          },
-        iconbtn:{
-        
-         marginTop:20,
-        },
         link:{
-          marginTop:120,
+          marginTop:80,
        justifyContent:'space-between',
        alignItems:'flex-end',
        
@@ -153,7 +168,14 @@ const styles = StyleSheet.create({
           fontSize:18,
         },heading:{
           fontSize:20,
-        }
+        },
+        googleSignInButton: {
+          alignSelf:'center',
+          width: 250,
+        
+          alignContent:'center',
+          justifyContent:'center',
+        },
 });
 
 export default SignupForm;

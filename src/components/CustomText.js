@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import colors from '../utils/colors';
 
 
-const CenteredText = ({ text, style }) => {
+const CustomText = ({ text, style }) => {
   return (
     <View style={styles.container} >
       <Text style={[styles.text,style]}>{text}</Text>
@@ -18,13 +18,9 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-   // fontSize: 23,
     fontWeight: 'bold',
     color: colors.darkGreen,
-    
-   
-   
   },
 });
 
-export default CenteredText;
+export default CustomText;

@@ -1,28 +1,31 @@
-import React from 'react'
-import { View,Text,StyleSheet } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './src/screens/Home';
-import Details from './src/screens/Details';
-import HomeNavigation from './src/navigation/HomeNavigation';
-import AppNavigator from './src/navigation/AppNavigator';
-import SignupForm from './src/screens/SignupForm';
-import Login from './src/screens/Login';
+import React,{useEffect} from 'react'
+import { StyleSheet } from 'react-native'
 
+//import google signin libraries
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
+//import navigation container
+import { NavigationContainer } from '@react-navigation/native';
+import AuthNavigator from './src/navigation/AuthNavigator';
 
 function App() {
-const Stack = createNativeStackNavigator();
+
+  useEffect(() => {
+    // Initialize GoogleSignin
+    GoogleSignin.configure({
+      scopes: ['email'], // You can add additional scopes if needed
+      webClientId: 'YOUR_WEB_CLIENT_ID', // Your Web Client ID for Android
+      offlineAccess: true, // If you want to support offline access
+      hostedDomain: '', // If you are using GSuite, you can set the hosted domain to restrict sign-in to specific domains
+    });
+  }, []);
+
   return (
   <NavigationContainer>
-     <AppNavigator />
-  </NavigationContainer>
-
-   //<SignupForm />
-    //<Login />
-  
+     <AuthNavigator />
+  </NavigationContainer> 
   )
 }
-
 const styles = StyleSheet.create({
   Container: {
     flex:1,

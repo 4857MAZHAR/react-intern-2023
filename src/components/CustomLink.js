@@ -7,7 +7,7 @@ import colors from '../utils/colors';
 // Get the screen width using Dimensions
 const screenWidth = Dimensions.get('window').width;
 
-const ActionText = ({ text, onPress, style,textStyle }) => {
+const CustomLink = ({ text, onPress, style,textStyle }) => {
   return (
     <TouchableOpacity style={[styles.button,style]} onPress={onPress}>
       <Text style={[styles.buttonText,textStyle]}>{text}</Text>
@@ -29,5 +29,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ActionText;
+export default CustomLink;
 

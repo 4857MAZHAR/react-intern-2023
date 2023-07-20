@@ -1,32 +1,70 @@
+import { View, Dimensions, StyleSheet ,TouchableOpacity} from 'react-native';
 import React from 'react';
-import { View, Dimensions, StyleSheet } from 'react-native';
+
+//import formik & yup libraries
 import { Formik } from 'formik';
-import CenteredText from '../components/CenteredText';
-import TextInputField from '../components/TextInputField';
-import colors from '../utils/colors';
-import CustomButton from '../components/CustomButton';
-import CustomIconButton from '../components/CustomIconButton';
 import * as Yup from 'yup';
+
+//import @react-native-google-signin library
+import { GoogleSignin, GoogleSigninButton,statusCodes } from '@react-native-google-signin/google-signin';
+
+//import custom components
+import CustomText from '../components/CustomText';
+import TextInputField from '../components/TextInputField';
+import CustomButton from '../components/CustomButton';
 import Error from '../components/Error';
-import ActionText from '../components/ActionText';
+import CustomLink from '../components/CustomLink';
+
+//import colors
+import colors from '../utils/colors';
+
+//import Material Community icons
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 
 const screenWidth = Dimensions.get('window').width;
 
-const Login = () => {
+
+const Login = ({navigation}) => {
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log('Google Sign-In Success:', userInfo);
+      // Implement your logic here for handling successful Google Sign-In
+    } catch (error) {
+      console.log('Google Sign-In Error:', error.message);
+    }
+  };
+
+  const handleSignUp = (values) => {
+    console.log('Form values:', values);
+    // Implement signup logic here
+    
+    // navigation.navigate('Dashboard', {
+    //   screen: 'Dashboard',
+    // });
+  };
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string().required('Password is required'),
   });
 
-  const handleSignUp = (values) => {
-    console.log('Form values:', values);
-    // Implement signup logic here
-  };
+  
 
   return (
     <View style={styles.container}>
+      <View >
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon name="close" size={28} color="black" />
+      </TouchableOpacity>
+      
+    </View>
       <View style={styles.text}>
-        <CenteredText style={styles.heading} text="Sign in to BOXD" />
+        <CustomText style={styles.heading} text="Sign in to BOXD" />
       </View>
       <View style={styles.form}>
         <Formik
@@ -61,14 +99,16 @@ const Login = () => {
                 textStyle={styles.signInButtonText}
               />
               
-              <CustomIconButton style={styles.iconbtn}
-                title="Continue with Google"
-                iconSource={require('../assets/icons/googleIcon.png')}
-                onPress={() => console.log('SignIn with Google')}
+              <GoogleSigninButton
+                      style={styles.googleSignInButton}
+                      size={GoogleSigninButton.Size.Wide}
+                      color={GoogleSigninButton.Color.Light}
+                      onPress={handleGoogleSignIn}
               />
-              <ActionText
+
+              <CustomLink
                 text="Forgotten your password?"
-                onPress={() => console.log('Forget password Logic here')}
+                onPress={() => navigation.navigate("ForgetPassword")}
                 style={styles.link}
                 textStyle={styles.linkText}
               />
@@ -86,6 +126,7 @@ const styles = StyleSheet.create({
     padding: screenWidth * 0.08,
     flex: 1,
   },
+  
   text: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -116,10 +157,14 @@ fontSize:25,
   linkText:{
     fontSize:15,
   },
-  iconbtn:{
+  googleSignInButton: {
+    marginTop:30,
+          alignSelf:'center',
+          width: 250,
         
-    marginTop:100,
-   }
+          alignContent:'center',
+          justifyContent:'center',
+        },
 });
 
 export default Login;
