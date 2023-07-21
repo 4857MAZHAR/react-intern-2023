@@ -1,31 +1,31 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import SignUp from '../screens/Authentication/SignUp';
-import Login from "../screens/Authentication/Login";
-import ForgotPassword from "../screens/Authentication/ForgotPassword";
-import { SCREEN_NAME } from "../utils/Const";
-
 const Stack = createNativeStackNavigator();
 
-function Route() {
+//screens
+import SignupScreen from '../screens/auth/SignupScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import ForgotPassword from '../screens/auth/ForgotPassword';
+import DrawerNavigation from './DrawerNavigation';
+import { screennames } from '../utils/screennames';
+
+export default function Route() {
  return (
   <NavigationContainer>
-   <Stack.Navigator>
-    <Stack.Screen name={SCREEN_NAME.SignUp} component={SignUp} options={{ headerShown: false }} />
-    <Stack.Screen name={SCREEN_NAME.Login} component={Login} options={{ headerShown: false }} />
-    <Stack.Screen name={SCREEN_NAME.ForgotPassword} component={ForgotPassword} options={{ headerShown: false }} />
+   <Stack.Navigator
+    initialRouteName={screennames.signup}
+    screenOptions={{ headerShown: false }}>
+    <Stack.Screen name={screennames.signup} component={SignupScreen} />
+    <Stack.Screen name={screennames.login} component={LoginScreen} />
+    <Stack.Screen
+     name={screennames.forgotpass}
+     component={ForgotPassword}
+    />
+    <Stack.Screen
+     name={screennames.authenticatedsucess}
+     component={DrawerNavigation}
+    />
    </Stack.Navigator>
   </NavigationContainer>
  );
 }
-
-export default Route;
