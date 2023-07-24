@@ -8,7 +8,7 @@ const Tab = createBottomTabNavigator();
 
 import { screennames } from '../utils/screennames';
 import { colors } from "../utils/theme/colors/colors";
-import DashboardScreen from "../screens/BottomScreens/DashboardScreen";
+import DashboardScreen from "../screens/BottomScreens/DashBoardScreen";
 import InvoiceScreen from "../screens/BottomScreens/InvoiceScreen";
 import ReceiptsScreen from "../screens/BottomScreens/ReceiptsScreen";
 import CheckInScreen from "../screens/BottomScreens/CheckInScreen";

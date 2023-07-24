@@ -39,9 +39,7 @@ export default function LoginScreen({ navigation, route }) {
   };
 
   const googleFunction = () => {
-    // navigation.navigate('home', {
-    //   screen: 'HomeScreen',
-    // });
+    navigation.navigate(screennames.authenticatedsucess);
   };
 
   return (

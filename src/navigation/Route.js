@@ -6,8 +6,9 @@ const Stack = createNativeStackNavigator();
 import SignupScreen from '../screens/auth/SignupScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
 import ForgotPassword from '../screens/auth/ForgotPassword';
-import DrawerNavigation from './DrawerNavigation';
+import BottomTab from "./BottomTab"
 import { screennames } from '../utils/screennames';
+
 
 export default function Route() {
  return (
@@ -21,10 +22,11 @@ export default function Route() {
      name={screennames.forgotpass}
      component={ForgotPassword}
     />
-    <Stack.Screen
+  <Stack.Screen
      name={screennames.authenticatedsucess}
-     component={DrawerNavigation}
+     component={BottomTab}
     />
+
    </Stack.Navigator>
   </NavigationContainer>
  );
