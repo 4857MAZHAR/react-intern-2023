@@ -14,7 +14,7 @@ import DynamicButton from '../components/DynamicButton';
 //import screen names
 import { screennames } from '../utils/screennames'
 
-const NewFeatureScreen = () => {
+const NewFeatureScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
        <Heading text='New For You' textstyle={styles.text} type='h4' />
@@ -37,7 +37,7 @@ const NewFeatureScreen = () => {
        <View style={styles.btnContainer}>
        
             <DynamicButton text='Continue to Dashboard'
-            btnfunction={() => console.log("Move to dashboard screen")}
+            btnfunction={() => navigation.navigate('home', {screen: 'HomeScreen',})}
             textstyle={styles.btntext1}
              btnstyle={{...styles.center,...styles.btnstyle1}}
              />
