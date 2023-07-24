@@ -7,10 +7,4 @@ export const screennames = {
   login: 'loginscreen',
   signup: 'signupscreen',
   forgotpass: 'forgotpass',
-  dashboard: 'Dashboard',
-  invoices: 'Invoices',
-  receipts: 'Receipts',
-  checkIn: 'Check-In',
-  forYou: 'For You',
-  newfeature: 'newfeature'
 };
