@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   foundertext: {
     textAlign: 'center',
-    color: colors.darkgrey,
+    color: colors.darkGray,
   },
   gbtextcolor: {
     color: colors.black,

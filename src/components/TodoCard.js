@@ -24,7 +24,7 @@ export default function TodoCard({item}) {
       <TouchableOpacity
         onPress={() => dispatch(completetodo(item?.id))}
         style={styles.crossbtn}>
-        <EvilIcons name="close" size={22} color={colors.darkgrey} />
+        <EvilIcons name="close" size={22} color={colors.darkGray} />
       </TouchableOpacity>
     </View>
   );
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 8,
     borderWidth: 0.5,
-    borderColor: colors.darkgrey,
+    borderColor: colors.darkGray,
     display: 'flex',
     flexDirection: 'row',
   },

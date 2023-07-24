@@ -16,10 +16,10 @@ import BodyText from '../../components/Typography/BodyText';
 import DynamicInput from '../../components/DynamicInput';
 import DynamicButton from '../../components/DynamicButton';
 
-import { colors } from '../../utils/theme/colors/colors';
-import { screennames } from '../../utils/screennames';
+import {colors} from '../../utils/theme/colors/colors';
+import {screennames} from '../../utils/screenNames';
 import Ionicicons from 'react-native-vector-icons/Ionicons';
-import { Formik } from 'formik';
+import {Formik} from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -27,21 +27,19 @@ const validationSchema = Yup.object().shape({
   pass: Yup.string().required('Password is required'),
 });
 
-export default function LoginScreen({ navigation, route }) {
+export default function LoginScreen({navigation, route}) {
   const onSubmitFunction = async values => {
     try {
       if (values.email === '' || values.pass === '') {
-        alert('Fill All Fields');
+        navigation.navigate(screennames.newfeature);
       } else {
         alert(JSON.stringify(values));
       }
-    } catch { }
+    } catch {}
   };
 
   const googleFunction = () => {
-    // navigation.navigate('home', {
-    //   screen: 'HomeScreen',
-    // });
+    navigation.navigate(screennames.newfeature);
   };
 
   return (
@@ -51,10 +49,10 @@ export default function LoginScreen({ navigation, route }) {
       behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
-          initialValues={{ email: '', pass: '' }}
+          initialValues={{email: '', pass: ''}}
           validationSchema={validationSchema}
           onSubmit={values => onSubmitFunction(values)}>
-          {({ handleChange, handleSubmit, values, errors, touched }) => (
+          {({handleChange, handleSubmit, values, errors, touched}) => (
             <View style={styles.mncontainer}>
               <View style={styles.backheader}>
                 <TouchableOpacity onPress={() => navigation.pop()}>
@@ -89,7 +87,7 @@ export default function LoginScreen({ navigation, route }) {
                 <DynamicButton
                   btnfunction={handleSubmit}
                   textstyle={styles.btntext1}
-                  btnstyle={{ ...styles.btnstyle1, ...styles.center }}
+                  btnstyle={{...styles.btnstyle1, ...styles.center}}
                   text={'Sign in'}></DynamicButton>
                 <DynamicButton
                   btnfunction={googleFunction}
