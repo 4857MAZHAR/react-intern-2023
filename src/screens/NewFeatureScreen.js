@@ -10,7 +10,7 @@ import BodyText from '../components/Typography/BodyText';
 import DynamicButton from '../components/DynamicButton';
 
 //import screen names
-import {screennames} from '../utils/screennames';
+import {screennames} from '../utils/screenNames';
 
 const NewFeatureScreen = ({navigation}) => {
   return (

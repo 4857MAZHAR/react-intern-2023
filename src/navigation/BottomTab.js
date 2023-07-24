@@ -4,9 +4,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 const Tab = createBottomTabNavigator();
 
-//screens
-
-import {screennames} from '../utils/screennames';
+import {screennames} from '../utils/screenNames';
 import {colors} from '../utils/theme/colors/colors';
 import DashboardScreen from '../screens/BottomScreens/DashBoardScreen';
 import InvoiceScreen from '../screens/BottomScreens/InvoiceScreen';

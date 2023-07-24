@@ -19,7 +19,7 @@ import DynamicButton from '../../components/DynamicButton';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import {screennames} from '../../utils/screennames';
+import {screennames} from '../utils/screenNames';
 import {colors} from '../../utils/theme/colors/colors';
 
 const validationSchema = Yup.object().shape({

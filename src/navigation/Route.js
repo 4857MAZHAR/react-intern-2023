@@ -8,7 +8,7 @@ import LoginScreen from '../screens/auth/LoginScreen';
 import ForgotPassword from '../screens/auth/ForgotPassword';
 import NewFeatureScreen from '../screens/NewFeatureScreen';
 import BottomTab from './BottomTab';
-import {screennames} from '../utils/screennames';
+import {screennames} from '../utils/screenNames';
 
 export default function Route() {
   return (

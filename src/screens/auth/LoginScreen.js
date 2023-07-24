@@ -17,7 +17,7 @@ import DynamicInput from '../../components/DynamicInput';
 import DynamicButton from '../../components/DynamicButton';
 
 import {colors} from '../../utils/theme/colors/colors';
-import {screennames} from '../../utils/screennames';
+import {screennames} from '../utils/screenNames';
 import Ionicicons from 'react-native-vector-icons/Ionicons';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
