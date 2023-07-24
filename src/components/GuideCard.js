@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 
-import {colors} from '../utils/theme/colors/colors';
+import { colors } from '../utils/theme/colors/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 //components

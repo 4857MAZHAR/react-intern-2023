@@ -12,7 +12,7 @@ import DynamicButton from '../components/DynamicButton';
 //import screen names
 import {screennames} from '../utils/screenNames';
 
-const NewFeatureScreen = ({navigation}) => {
+const NewFeatureScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Heading text="New For You" textstyle={styles.text} type="h4" />

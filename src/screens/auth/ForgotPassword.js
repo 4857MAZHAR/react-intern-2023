@@ -16,15 +16,15 @@ import DynamicInput from '../../components/DynamicInput';
 import DynamicButton from '../../components/DynamicButton';
 
 import Ionicicons from 'react-native-vector-icons/Ionicons';
-import {Formik} from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {colors} from '../../utils/theme/colors/colors';
+import { colors } from '../../utils/theme/colors/colors';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
 });
 
-export default function ForgotPassword({navigation, route}) {
+export default function ForgotPassword({ navigation, route }) {
   const onSubmitFunction = async values => {
     try {
       if (values.email === '') {
@@ -32,7 +32,7 @@ export default function ForgotPassword({navigation, route}) {
       } else {
         alert(JSON.stringify(values));
       }
-    } catch {}
+    } catch { }
   };
 
   return (
@@ -42,10 +42,10 @@ export default function ForgotPassword({navigation, route}) {
       behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
-          initialValues={{email: ''}}
+          initialValues={{ email: '' }}
           validationSchema={validationSchema}
           onSubmit={values => onSubmitFunction(values)}>
-          {({handleChange, handleSubmit, values, errors, touched}) => (
+          {({ handleChange, handleSubmit, values, errors, touched }) => (
             <View style={styles.mncontainer}>
               <View style={styles.backheader}>
                 <TouchableOpacity onPress={() => navigation.pop()}>
@@ -76,7 +76,7 @@ export default function ForgotPassword({navigation, route}) {
                 <DynamicButton
                   btnfunction={handleSubmit}
                   textstyle={styles.btntext1}
-                  btnstyle={{...styles.btnstyle1, ...styles.center}}
+                  btnstyle={{ ...styles.btnstyle1, ...styles.center }}
                   text={'Reset Password'}></DynamicButton>
               </View>
             </View>
