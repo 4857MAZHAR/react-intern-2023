@@ -17,10 +17,10 @@ import DynamicInput from '../../components/DynamicInput';
 import DynamicButton from '../../components/DynamicButton';
 
 import Entypo from 'react-native-vector-icons/Entypo';
-import {Formik} from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {screennames} from '../../utils/screennames';
-import {colors} from '../../utils/theme/colors/colors';
+import { screennames } from '../../utils/screennames';
+import { colors } from '../../utils/theme/colors/colors';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -30,7 +30,7 @@ const validationSchema = Yup.object().shape({
     .required('Confirm Password is required'),
 });
 
-export default function SignupScreen({navigation, route}) {
+export default function SignupScreen({ navigation, route }) {
   const onSubmitFunction = async values => {
     try {
       if (
@@ -44,13 +44,13 @@ export default function SignupScreen({navigation, route}) {
       } else {
         alert(JSON.stringify(values));
       }
-    } catch {}
+    } catch { }
   };
 
   const googleFunction = () => {
-    navigation.navigate('home', {
-      screen: 'HomeScreen',
-    });
+    // navigation.navigate('home', {
+    //   screen: 'HomeScreen',
+    // });
   };
 
   return (
@@ -60,10 +60,10 @@ export default function SignupScreen({navigation, route}) {
       behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
-          initialValues={{email: '', pass: '', confirmpass: ''}}
+          initialValues={{ email: '', pass: '', confirmpass: '' }}
           validationSchema={validationSchema}
           onSubmit={values => onSubmitFunction(values)}>
-          {({handleChange, handleSubmit, values, errors, touched}) => (
+          {({ handleChange, handleSubmit, values, errors, touched }) => (
             <View style={styles.mncontainer}>
               <Heading
                 type="h2"
