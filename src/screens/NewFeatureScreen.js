@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import { View, StyleSheet, Image, ScrollView } from 'react-native';
 
 //import color them
-import {colors} from '../utils/theme/colors/colors';
+import { colors } from '../utils/theme/colors/colors';
 
 //import components
 import Heading from '../components/Typography/Heading';
@@ -10,47 +10,41 @@ import BodyText from '../components/Typography/BodyText';
 import DynamicButton from '../components/DynamicButton';
 
 //import screen names
-import {screennames} from '../utils/screenNames';
+import { screennames } from '../utils/screenNames';
 
-const NewFeatureScreen = ({navigation}) => {
+const NewFeatureScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Heading text="New For You" textstyle={styles.text} type="h4" />
-      <View style={styles.featureContainer}>
-        <Heading
-          text="Say Hello to your business activity something"
-          type="h3"
-          textstyle={styles.featText}
-        />
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <Heading text="New For You" textstyle={styles.text} type="h4" />
+        <View style={styles.featureContainer}>
+          <Heading
+            text="Say Hello to your business activity something"
+            type="h3"
+            textstyle={styles.featText}
+          />
 
-        <View style={styles.imgContainer}>
-          <Image
-            source={require('../assets/images/feature.png')}
-            style={styles.image}
-            resizeMode="contain"
+          <View style={styles.imgContainer}>
+            <Image
+              source={require('../assets/images/feature.png')}
+              style={styles.image}
+              resizeMode="contain"
+            />
+          </View>
+
+          <BodyText text="TBS line about what this is" textstyle={styles.bodyText} />
+          <BodyText text="TBS line about what this is" textstyle={styles.bodyText} />
+        </View>
+        <View style={styles.btnContainer}>
+          <DynamicButton
+            text="Continue to Dashboard"
+            btnfunction={() => navigation.navigate(screennames.authenticatedsucess)}
+            textstyle={styles.btntext1}
+            btnstyle={{ ...styles.center, ...styles.btnstyle1 }}
           />
         </View>
-
-        <BodyText
-          text="TBS line about what this is"
-          textstyle={styles.bodyText}
-        />
-        <BodyText
-          text="TBS line about what this is"
-          textstyle={styles.bodyText}
-        />
       </View>
-      <View style={styles.btnContainer}>
-        <DynamicButton
-          text="Continue to Dashboard"
-          btnfunction={() =>
-            navigation.navigate(screennames.authenticatedsucess)
-          }
-          textstyle={styles.btntext1}
-          btnstyle={{...styles.center, ...styles.btnstyle1}}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 
