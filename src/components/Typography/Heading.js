@@ -11,7 +11,7 @@ export default function Heading({text = '', textstyle = {}, type = 'h1'}) {
     h6: 12,
   };
   return (
-    <Text style={[styles.text, textstyle, {fontSize: types[type]}]}>
+    <Text style={[ styles.text, textstyle, {fontSize: types[type]}]}>
       {text}
     </Text>
   );
