@@ -31,7 +31,7 @@ export default function GuideCard({
             <Ionicons
               name="chatbox"
               size={24}
-              color={colors.darkorange}
+              color={colors.darkOrange}
               style={styles.icon}
             />
           </ImageBackground>
@@ -80,10 +80,10 @@ export default function GuideCard({
 
 const styles = StyleSheet.create({
   mncontainer: {
-    backgroundColor: colors.lightorange,
+    backgroundColor: colors.lightOrange,
     width: '95%',
     borderWidth: 0.5,
-    borderColor: colors.darkorange,
+    borderColor: colors.darkOrange,
     borderTopRightRadius: 7,
     borderBottomRightRadius: 7,
     paddingHorizontal: 12,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   foundertext: {
     textAlign: 'center',
-    color: colors.darkgrey,
+    color: colors.darkGray,
   },
   gbtextcolor: {
     color: colors.black,
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   },
   link: {
     marginBottom: 5,
-    color: colors.darkorange,
+    color: colors.darkOrange,
     textDecorationLine: 'underline',
     fontWeight: '600',
   },

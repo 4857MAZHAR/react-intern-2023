@@ -17,10 +17,10 @@ import DynamicInput from '../../components/DynamicInput';
 import DynamicButton from '../../components/DynamicButton';
 
 import Entypo from 'react-native-vector-icons/Entypo';
-import { Formik } from 'formik';
+import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { screennames } from '../../utils/screennames';
-import { colors } from '../../utils/theme/colors/colors';
+import {screennames} from '../../utils/screennames';
+import {colors} from '../../utils/theme/colors/colors';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -30,7 +30,7 @@ const validationSchema = Yup.object().shape({
     .required('Confirm Password is required'),
 });
 
-export default function SignupScreen({ navigation, route }) {
+export default function SignupScreen({navigation, route}) {
   const onSubmitFunction = async values => {
     try {
       if (
@@ -44,7 +44,7 @@ export default function SignupScreen({ navigation, route }) {
       } else {
         alert(JSON.stringify(values));
       }
-    } catch { }
+    } catch {}
   };
 
   const googleFunction = () => {
@@ -60,10 +60,10 @@ export default function SignupScreen({ navigation, route }) {
       behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
-          initialValues={{ email: '', pass: '', confirmpass: '' }}
+          initialValues={{email: '', pass: '', confirmpass: ''}}
           validationSchema={validationSchema}
           onSubmit={values => onSubmitFunction(values)}>
-          {({ handleChange, handleSubmit, values, errors, touched }) => (
+          {({handleChange, handleSubmit, values, errors, touched}) => (
             <View style={styles.mncontainer}>
               <Heading
                 type="h2"
@@ -146,12 +146,12 @@ export default function SignupScreen({ navigation, route }) {
 
 const styles = StyleSheet.create({
   gb: {
-    backgroundColor: colors.lightorange,
+    backgroundColor: colors.lightOrange,
     flex: 1,
   },
   mncontainer: {
     flex: 1,
-    backgroundColor: colors.lightorange,
+    backgroundColor: colors.lightOrange,
     paddingHorizontal: 20,
     paddingVertical: 20,
   },
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.orange,
     borderRadius: 30,
     borderWidth: 1,
-    borderColor: colors.darkorange,
+    borderColor: colors.darkOrange,
     paddingHorizontal: 20,
     paddingVertical: 15,
   },
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   btntext2: {
-    color: colors.darkgrey,
+    color: colors.darkGray,
   },
   gimage: {
     height: 30,
