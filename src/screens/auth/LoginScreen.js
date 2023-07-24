@@ -124,12 +124,12 @@ export default function LoginScreen({ navigation, route }) {
 
 const styles = StyleSheet.create({
   gb: {
-    backgroundColor: colors.lightorange,
+    backgroundColor: colors.lightOrange,
     flex: 1,
   },
   mncontainer: {
     flex: 1,
-    backgroundColor: colors.lightorange,
+    backgroundColor: colors.lightOrange,
     paddingHorizontal: 20,
     paddingVertical: 20,
   },
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.orange,
     borderRadius: 30,
     borderWidth: 1,
-    borderColor: colors.darkorange,
+    borderColor: colors.darkOrange,
     paddingHorizontal: 20,
     paddingVertical: 15,
   },
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   btntext2: {
-    color: colors.darkgrey,
+    color: colors.darkGray,
   },
   gimage: {
     height: 30,

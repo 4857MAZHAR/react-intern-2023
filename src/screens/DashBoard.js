@@ -1,6 +1,6 @@
-import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import React from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 //components
 import TodoCard from '../components/TodoCard';
@@ -8,10 +8,10 @@ import GuideCard from '../components/GuideCard';
 import BodyText from '../components/Typography/BodyText';
 import Heading from '../components/Typography/Heading';
 
-import {colors} from '../utils/theme/colors/colors';
+import { colors } from '../utils/theme/colors/colors';
 
 export default function DashBoard() {
-  const {todo} = useSelector(state => state.todos);
+  const { todo } = useSelector(state => state.todos);
   return (
     <View style={styles.mncontainer}>
       <Heading
@@ -38,7 +38,7 @@ export default function DashBoard() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.flatlisttodo}
           data={todo}
-          renderItem={({item}) => <TodoCard item={item} />}
+          renderItem={({ item }) => <TodoCard item={item} />}
           keyExtractor={item => item.id}
         />
       </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   sheet: {
     height: 500,
     width: '100%',
-    backgroundColor: colors.lightgrey1,
+    backgroundColor: colors.lightGray1,
     marginTop: 20,
     borderTopRightRadius: 35,
     borderTopLeftRadius: 35,
@@ -62,17 +62,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
   },
   headtextstyle1: {
-    color: colors.textcolor,
+    color: colors.textColor,
   },
   numtodotextstyle: {
-    color: colors.textcolor,
+    color: colors.textColor,
   },
   welcometext: {
     textAlign: 'left',
     marginTop: 25,
     marginBottom: 10,
     paddingLeft: 13,
-    color: colors.greendark1,
+    color: colors.greenDark1,
   },
 
   horizontalflex: {
