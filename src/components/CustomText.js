@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import colors from '../utils/colors';
 
-
-const CustomText = ({ text, style }) => {
+const CustomText = ({text, style}) => {
   return (
-    <View style={styles.container} >
-      <Text style={[styles.text,style]}>{text}</Text>
+    <View style={styles.container}>
+      <Text style={[styles.text, style]}>{text}</Text>
     </View>
   );
 };
