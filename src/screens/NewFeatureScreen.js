@@ -14,7 +14,7 @@ import { screennames } from '../utils/screenNames';
 
 const NewFeatureScreen = ({ navigation }) => {
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.container}>
         <Heading text="New For You" textstyle={styles.text} type="h4" />
         <View style={styles.featureContainer}>

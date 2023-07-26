@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 //components
 import Heading from '../../components/Typography/Heading';
@@ -17,10 +17,12 @@ import DynamicInput from '../../components/DynamicInput';
 import DynamicButton from '../../components/DynamicButton';
 
 import Entypo from 'react-native-vector-icons/Entypo';
-import {Formik} from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {screennames} from '../../utils/screenNames';
-import {colors} from '../../utils/theme/colors/colors';
+import { screennames } from '../../utils/screenNames';
+import { colors } from '../../utils/theme/colors/colors';
+
+import SplashScreen from 'react-native-splash-screen';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -30,7 +32,7 @@ const validationSchema = Yup.object().shape({
     .required('Confirm Password is required'),
 });
 
-export default function SignupScreen({navigation, route}) {
+export default function SignupScreen({ navigation, route }) {
   const onSubmitFunction = async values => {
     try {
       if (
@@ -44,7 +46,7 @@ export default function SignupScreen({navigation, route}) {
       } else {
         alert(JSON.stringify(values));
       }
-    } catch {}
+    } catch { }
   };
 
   const googleFunction = () => {
@@ -53,6 +55,9 @@ export default function SignupScreen({navigation, route}) {
     // });
   };
 
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <KeyboardAvoidingView
       style={styles.gb}
@@ -60,10 +65,10 @@ export default function SignupScreen({navigation, route}) {
       behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Formik
-          initialValues={{email: '', pass: '', confirmpass: ''}}
+          initialValues={{ email: '', pass: '', confirmpass: '' }}
           validationSchema={validationSchema}
           onSubmit={values => onSubmitFunction(values)}>
-          {({handleChange, handleSubmit, values, errors, touched}) => (
+          {({ handleChange, handleSubmit, values, errors, touched }) => (
             <View style={styles.mncontainer}>
               <Heading
                 type="h2"
