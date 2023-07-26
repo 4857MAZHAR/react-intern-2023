@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Platform, StyleSheet, Text, View } from 'react-native'; // Import Platform
+import { Platform, StyleSheet, Text, View } from 'react-native'; // Import Platform
 import { colors } from '../utils/theme/colors/colors';
 
 const Header = ({
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flex: 1,
-    alignItems: 'flex-start',
     justifyContent: 'center',
   },
   titleText: {

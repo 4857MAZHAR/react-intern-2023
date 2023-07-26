@@ -1,10 +1,10 @@
-import {StyleSheet, View, FlatList} from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import React from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import Header from '../../components/Header';
-import {colors} from '../../utils/theme/colors/colors';
+import { colors } from '../../utils/theme/colors/colors';
 import BellIcon from '../../assets/icons/BellIcon';
-import {Text} from 'react-native';
+import { Text } from 'react-native';
 import LogoIcon from '../../assets/icons/LogoIcon';
 
 //components
@@ -14,7 +14,7 @@ import BodyText from '../../components/Typography/BodyText';
 import Heading from '../../components/Typography/Heading';
 
 const DashBoardScreen = () => {
-  const {todo} = useSelector(state => state.todos);
+  const { todo } = useSelector(state => state.todos);
   const userName = '28&Moon';
   const notificationCount = 3;
   return (
@@ -68,7 +68,7 @@ const DashBoardScreen = () => {
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.flatlisttodo}
                 data={todo}
-                renderItem={({item}) => <TodoCard item={item} />}
+                renderItem={({ item }) => <TodoCard item={item} />}
                 keyExtractor={item => item.id}
               />
             </View>
